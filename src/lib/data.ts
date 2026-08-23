@@ -38,7 +38,6 @@ export const site = {
 export const nav = [
   { href: "/", label: "Home" },
   { href: "/visit", label: "Visit" },
-  { href: "/events", label: "Events" },
   { href: "/get-involved", label: "Get Involved" },
   { href: "/about", label: "About" },
   { href: "/virtual-tour", label: "Virtual Tour" },
@@ -139,7 +138,7 @@ export const heroSlides = [
     title: "Temple Life, All Week Long",
     body: "Morning and evening aarti, daily scripture class, and Sunday celebrations — there's always a way to connect.",
     primaryCta: { label: "View Full Schedule", href: "/visit" },
-    secondaryCta: { label: "See Events", href: "/events" },
+    secondaryCta: { label: "See Events", href: "/get-involved#events" },
     schedule: [
       { time: "4:30 AM", title: "Mangala Aarti & Tulasi Worship — Daily" },
       { time: "7:15 AM", title: "Srimad Bhagavatam Class — Daily" },
@@ -312,6 +311,34 @@ export const givingFunds = [
   },
 ] as const;
 
+// Core teachings, shown as a card grid on the About page.
+export const coreBeliefs = [
+  {
+    title: "Krishna, the Supreme",
+    description: "Krishna is understood as the Supreme Personality of Godhead — the source of all that exists, worshipped as a personal, loving God rather than an abstract force.",
+  },
+  {
+    title: "Bhagavad-gita As It Is",
+    description: "The Bhagavad-gita is our central scripture, studied through Srila Prabhupada's translation and commentary, Bhagavad-gita As It Is.",
+  },
+  {
+    title: "Bhakti Yoga",
+    description: "Devotional service — chanting, worship, study, and service to others — is the direct path to reconnecting with Krishna, open to absolutely everyone.",
+  },
+  {
+    title: "Karma & Reincarnation",
+    description: "The soul is eternal and passes through many bodies across lifetimes; our actions shape what comes next, and bhakti offers a way beyond the cycle entirely.",
+  },
+] as const;
+
+// Global movement stats, shown on the About page.
+export const iskconStats = [
+  { stat: "1966", label: "Founded in New York City" },
+  { stat: "800+", label: "Temples & centers worldwide" },
+  { stat: "~1M", label: "Congregational members globally" },
+  { stat: "60", label: "Years spreading Krishna consciousness" },
+] as const;
+
 export const leadership = [
   {
     name: "Sankarshan Das", // TODO: confirm title/spelling
@@ -356,6 +383,71 @@ export const getInvolvedOptions = [
     description: "Help with fundraising events, outreach, and communications for the new temple.",
   },
 ] as const;
+
+// "Krishna Consciousness at Home" — a rebuild of the legacy site's
+// /kc-at-home/ page with clearer structure and proper headings.
+export const kcAtHome = {
+  mantra: [
+    "Hare Krishna, Hare Krishna",
+    "Krishna Krishna, Hare Hare",
+    "Hare Rama, Hare Rama",
+    "Rama Rama, Hare Hare",
+  ],
+  altarItems: [
+    "A picture of Srila Prabhupada",
+    "A picture of Lord Chaitanya and associates",
+    "A picture of Sri Sri Radha-Krishna",
+    "An altar cloth",
+    "Water cups and an offering plate",
+    "A bell, incense, candles, and fresh flowers",
+  ],
+  offerableFoods: ["Milk & dairy products", "Vegetables", "Fruits & nuts", "Grains"],
+  nonOfferableFoods: ["Meat, fish & eggs", "Garlic & onions", "Caffeinated beverages"],
+  regulativePrinciples: [
+    {
+      title: "No Meat, Fish, or Eggs",
+      description: "A diet free of violence toward other living beings, centered on foods offered to Krishna.",
+    },
+    {
+      title: "No Gambling",
+      description: "Gambling breeds anxiety, greed, and envy — the opposite of a peaceful, devotional mind.",
+    },
+    {
+      title: "No Intoxication",
+      description: "Alcohol, drugs, tobacco, and even caffeine cloud consciousness and cause forgetfulness of Krishna.",
+    },
+    {
+      title: "No Illicit Sex",
+      description: "Sexual life is restricted to marriage, for procreation, in keeping with a life of self-control.",
+    },
+  ],
+  dailyPractices: [
+    {
+      title: "Chant the Holy Names",
+      description: "Chant japa on 108 beads — 16 rounds daily is the standard for serious practitioners, ideally in the early morning hours.",
+    },
+    {
+      title: "Worship at Your Altar",
+      description: "Keep it clean, offer fresh water and incense daily, and remove wilted flowers promptly.",
+    },
+    {
+      title: "Offer Your Food",
+      description: "Prepare vegetarian food with devotion and offer it to Krishna before eating — it becomes prasadam, spiritualized food.",
+    },
+    {
+      title: "Read Daily",
+      description: "Set aside time each day to read Srila Prabhupada's books — available at store.krishna.com.",
+    },
+    {
+      title: "Engage Your Work",
+      description: "Offer the fruits of your profession — writing, art, or any skill — in service to Krishna rather than for self alone.",
+    },
+    {
+      title: "Stay in Association",
+      description: "Visit the temple regularly and join a home study group to stay connected to the devotee community.",
+    },
+  ],
+} as const;
 
 export const faqs = [
   {

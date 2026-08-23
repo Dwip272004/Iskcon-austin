@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { ArtPanel, Button, Card, PageHero, SectionHeading } from "@/components/ui";
 import { MapPinIcon, NamasteIcon } from "@/components/devotional-art";
 import { faqs, site, weeklySchedule } from "@/lib/data";
@@ -51,6 +52,14 @@ export default function VisitPage() {
               home.
             </li>
           </ul>
+          <p className="mt-6 text-sm text-ink-soft leading-relaxed">
+            Can't make it in person yet? You can start practicing today —
+            see our guide to{" "}
+            <Link href="/kc-at-home" className="font-semibold text-gold hover:text-gold-light underline underline-offset-2">
+              Krishna Consciousness at Home
+            </Link>
+            .
+          </p>
         </div>
         <ArtPanel icon={NamasteIcon} caption="Devotees Greeting Visitors" tone="cream" />
       </section>

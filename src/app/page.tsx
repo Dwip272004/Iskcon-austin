@@ -150,7 +150,7 @@ export default function HomePage() {
       <section className="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-24">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <SectionHeading eyebrow="Mark Your Calendar" title="Upcoming Events" />
-          <Link href="/events" className="text-sm font-semibold text-gold hover:text-gold-light">
+          <Link href="/get-involved#events" className="text-sm font-semibold text-gold hover:text-gold-light">
             View full calendar →
           </Link>
         </div>

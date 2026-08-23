@@ -55,6 +55,11 @@ export default function Footer() {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link href="/kc-at-home" className="hover:text-white">
+                Krishna Consciousness at Home
+              </Link>
+            </li>
           </ul>
         </div>
 
