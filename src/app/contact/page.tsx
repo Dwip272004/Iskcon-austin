@@ -14,12 +14,21 @@ const details = [
   { label: "Phone", value: site.phone, href: `tel:${site.phone}` },
   { label: "Email", value: site.email, href: `mailto:${site.email}` },
   { label: "Sunday Hours", value: site.hours },
+  {
+    label: "Temple Contact",
+    value: `${site.contactPerson.name} — ${site.contactPerson.phone}`,
+    href: `tel:${site.contactPerson.phone}`,
+  },
 ];
 
 export default function ContactPage() {
   return (
     <div>
-      <PageHero eyebrow="We'd Love to Hear From You" title="Contact Us" />
+      <PageHero
+        eyebrow="We'd Love to Hear From You"
+        title="Contact Us"
+        image="/page-heroes/contact.jpg"
+      />
 
       <section className="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-20 grid lg:grid-cols-2 gap-12">
         <div>

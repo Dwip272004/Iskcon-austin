@@ -16,6 +16,7 @@ export default function AboutPage() {
         eyebrow="Our Story"
         title="About ISKCON Austin"
         description="Part of a global tradition of bhakti-yoga, rooted in Austin since our community's earliest devotees gathered to chant, study, and share prasadam."
+        image="/page-heroes/about.jpg"
       />
 
       {/* History & philosophy */}
@@ -80,7 +81,7 @@ export default function AboutPage() {
             to begin within the next 12 months, with a public opening
             planned soon after.
           </p>
-          <Button href="/giving" variant="secondary" className="mt-6">
+          <Button href="/donate" variant="secondary" className="mt-6">
             Support the Campaign
           </Button>
         </div>

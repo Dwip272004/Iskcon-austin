@@ -20,15 +20,35 @@ export function PageHero({
   eyebrow,
   title,
   description,
+  image,
 }: {
   eyebrow: string;
   title: string;
   description?: string;
+  /**
+   * Optional path to a photo under /public (e.g. "/page-heroes/visit.jpg").
+   * Until that file exists, the hero falls back to the plain navy gradient
+   * automatically — a missing/404 image is simply transparent.
+   */
+  image?: string;
 }) {
   return (
     <section className="relative overflow-hidden bg-navy text-white">
-      <div className="absolute inset-0 pattern-dots text-white/[0.05]" aria-hidden />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(184,134,11,0.2),transparent_55%)]" aria-hidden />
+      {image && (
+        <>
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${image})` }}
+            aria-hidden
+          />
+          <div
+            className="absolute inset-0 bg-gradient-to-t from-navy-dark/95 via-navy-dark/75 to-navy-dark/55"
+            aria-hidden
+          />
+        </>
+      )}
+      <div className="absolute inset-0 pattern-dots text-white/[0.05]" aria-hidden />
       <div className="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-20 relative">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-light">
           {eyebrow}

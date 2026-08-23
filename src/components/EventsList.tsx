@@ -52,7 +52,7 @@ export default function EventsList() {
 
       <div className="mt-8 grid sm:grid-cols-2 gap-6">
         {filtered.slice(0, visible).map((e) => (
-          <Card key={e.title} className="p-6 flex flex-col sm:flex-row gap-5">
+          <Card key={`${e.title}-${e.date}`} className="p-6 flex flex-col sm:flex-row gap-5">
             <div className="shrink-0 w-20 text-center rounded-xl bg-cream py-3">
               <p className="text-xs font-semibold uppercase text-gold">
                 {new Date(e.date).toLocaleDateString("en-US", { month: "short" })}

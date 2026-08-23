@@ -16,6 +16,7 @@ export default function GetInvolvedPage() {
         eyebrow="Serve With Us"
         title="Get Involved"
         description="Devotional service (seva) is at the heart of temple life. Whatever your time and talents, there's a place for you here."
+        image="/page-heroes/get-involved.jpg"
       />
 
       <section className="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-20">

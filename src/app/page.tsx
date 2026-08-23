@@ -1,20 +1,15 @@
+import Image from "next/image";
 import Link from "next/link";
 import {
-  ArtPanel,
   Button,
   Card,
   Eyebrow,
   SectionHeading,
 } from "@/components/ui";
-import { TempleSilhouetteIcon } from "@/components/devotional-art";
-import { GarlandRow, OrnamentDivider } from "@/components/ornaments";
+import { MapPinIcon } from "@/components/devotional-art";
+import { CornerFrame, OrnamentDivider } from "@/components/ornaments";
+import HeroCarousel from "@/components/HeroCarousel";
 import { events, givingFunds, site, weeklySchedule } from "@/lib/data";
-
-const quickLinks = [
-  { href: "/media", label: "Watch Online", icon: "▶" },
-  { href: "/events", label: "See Events", icon: "🗓" },
-  { href: "/giving", label: "Donate", icon: "🙏" },
-];
 
 export default function HomePage() {
   const sundayItems = weeklySchedule.filter((s) => s.day === "Sunday");
@@ -22,67 +17,7 @@ export default function HomePage() {
 
   return (
     <div>
-      {/* Hero */}
-      <section className="relative overflow-hidden bg-navy text-white">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(184,134,11,0.25),transparent_55%)]" />
-        <div className="absolute inset-0 pattern-dots text-white/[0.05]" aria-hidden />
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-24 relative">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <Eyebrow>A Gift for Generations</Eyebrow>
-              <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold mt-3 leading-tight text-balance">
-                Building a Permanent Home for Krishna Consciousness in Austin
-              </h1>
-              <p className="mt-5 text-white/80 text-lg leading-relaxed max-w-xl">
-                Join us this Sunday for kirtan, class, and a free feast — and
-                be part of the community building ISKCON Austin's new temple,
-                a home for generations of devotees to come.
-              </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Button href="/visit" variant="primary">
-                  Plan Your Visit
-                </Button>
-                <Button href="/giving" variant="ghost">
-                  Support the New Temple
-                </Button>
-              </div>
-              <div className="mt-8 flex flex-wrap gap-6 text-sm text-white/70">
-                {quickLinks.map((q) => (
-                  <Link
-                    key={q.href}
-                    href={q.href}
-                    className="flex items-center gap-2 hover:text-white transition-colors"
-                  >
-                    <span aria-hidden>{q.icon}</span>
-                    {q.label}
-                  </Link>
-                ))}
-              </div>
-            </div>
-            <ArtPanel
-              icon={TempleSilhouetteIcon}
-              caption="New Temple — Rendering Coming Soon"
-              tone="navy"
-              ratio="aspect-[4/3]"
-              className="!bg-gradient-to-br !from-white/10 !to-white/5 !border-white/20"
-            />
-          </div>
-        </div>
-        <GarlandRow className="relative pb-4 text-marigold/70" />
-      </section>
-
-      {/* This Sunday strip */}
-      <section className="garland-edge bg-gradient-to-r from-marigold to-gold">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-white text-sm font-medium">
-          <p>
-            ॐ Join us this Sunday, {site.hours} — everyone is welcome, no
-            registration needed.
-          </p>
-          <Link href="/visit" className="underline underline-offset-2 shrink-0">
-            What to expect →
-          </Link>
-        </div>
-      </section>
+      <HeroCarousel />
 
       {/* Weekly schedule cards */}
       <section className="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-24">
@@ -116,15 +51,71 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Location guide for Sunday programs */}
+      <section className="bg-cream">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-24 grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <SectionHeading
+              eyebrow="Find Us"
+              title="Location Guide for Sunday Programs"
+              description="Join us every Sunday for kirtan, class, and prasadam — here's exactly where to go."
+            />
+            <div className="mt-6 flex items-start gap-3">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-gold border border-cream-deep">
+                <MapPinIcon className="w-5 h-5" />
+              </span>
+              <div>
+                <p className="font-semibold text-navy">{site.address}</p>
+                <p className="text-sm text-ink-soft mt-1">{site.hours}</p>
+              </div>
+            </div>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a
+                href={site.map.directionsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-semibold text-white hover:bg-gold-light transition-colors shadow-sm"
+              >
+                Get Directions
+              </a>
+              <a
+                href={site.map.placeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-navy px-6 py-3 text-sm font-semibold text-white hover:bg-navy-dark transition-colors shadow-sm"
+              >
+                View on Google Maps
+              </a>
+            </div>
+          </div>
+          <div className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden border border-cream-deep shadow-sm">
+            <iframe
+              src={site.map.embedUrl}
+              className="absolute inset-0 h-full w-full"
+              style={{ border: 0 }}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+              title="ISKCON Austin location map"
+            />
+            <CornerFrame tone="gold" size={20} inset={8} />
+          </div>
+        </div>
+      </section>
+
       {/* Capital campaign */}
       <section className="bg-cream">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-24 grid lg:grid-cols-2 gap-12 items-center">
-          <ArtPanel
-            icon={TempleSilhouetteIcon}
-            caption="New Temple — Architectural Rendering"
-            tone="cream"
-            ratio="aspect-[4/3]"
-          />
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-cream-deep shadow-sm">
+            <Image
+              src="/temple-renderings/exterior-04-front-entrance-pool.jpg"
+              alt="Architectural rendering of the new ISKCON Austin temple's front entrance and reflecting pool"
+              fill
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-cover"
+            />
+            <CornerFrame tone="gold" size={20} inset={8} />
+          </div>
           <div>
             <Eyebrow>New Temple Campaign</Eyebrow>
             <OrnamentDivider className="mt-3" />
@@ -144,11 +135,11 @@ export default function HomePage() {
               </div>
             </div>
             <div className="mt-6 flex flex-wrap gap-3">
-              <Button href="/giving" variant="secondary">
+              <Button href="/donate" variant="secondary">
                 Give to the Campaign
               </Button>
-              <Button href="/about" variant="ghost" className="!text-navy !border-navy/30 !bg-transparent hover:!bg-navy/5">
-                Project Details
+              <Button href="/virtual-tour" variant="ghost" className="!text-navy !border-navy/30 !bg-transparent hover:!bg-navy/5">
+                Take the Virtual Tour
               </Button>
             </div>
           </div>
@@ -165,7 +156,7 @@ export default function HomePage() {
         </div>
         <div className="mt-10 grid sm:grid-cols-3 gap-6">
           {upcoming.map((e) => (
-            <Card key={e.title} className="p-6 flex flex-col">
+            <Card key={`${e.title}-${e.date}`} className="p-6 flex flex-col">
               <span className="inline-block w-fit rounded-full bg-cream px-3 py-1 text-xs font-semibold uppercase tracking-wide text-navy">
                 {e.category}
               </span>

@@ -31,6 +31,7 @@ export default function GivingPage() {
         eyebrow="Support the Temple"
         title="Give"
         description="Whether you're supporting our new temple or everyday worship and seva, your gift keeps Krishna consciousness alive in Austin."
+        image="/page-heroes/giving.jpg"
       />
 
       <section className="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-20 grid lg:grid-cols-[1fr_1.2fr] gap-12 items-start">

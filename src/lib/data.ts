@@ -12,11 +12,26 @@ export const site = {
   phone: "+1-512-835-2121", // TODO: confirm current number
   email: "info@iskconaustin.com", // TODO: confirm current inbox
   address: "12012 North IH 35, Austin, TX 78753", // TODO: confirm current/new address
-  hours: "Sundays, 11:00 AM – 1:30 PM", // TODO: confirm single source of truth for hours
+  hours: "Sundays, 11:00 AM – 12:30 PM", // TODO: confirm single source of truth for hours
   socials: {
     facebook: "https://facebook.com/iskconaustin",
     instagram: "https://instagram.com/iskconaustin",
     youtube: "https://youtube.com/@iskconaustin",
+  },
+  // Direct temple contact.
+  contactPerson: {
+    name: "Abhay Charan Das",
+    phone: "+1-512-762-6644",
+  },
+  map: {
+    // Google Business Profile listing (cid link) provided by the client.
+    placeUrl:
+      "https://www.google.com/maps?cid=9067017259345413292&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAMYASAF&hl=en&gl=IN&source=embed",
+    // Embeddable iframe version of the same listing — no API key required.
+    embedUrl: "https://www.google.com/maps?cid=9067017259345413292&output=embed",
+    // Deep link that opens turn-by-turn directions straight away.
+    directionsUrl:
+      "https://www.google.com/maps/dir/?api=1&destination=12012+North+IH+35%2C+Austin%2C+TX+78753",
   },
 };
 
@@ -26,7 +41,7 @@ export const nav = [
   { href: "/events", label: "Events" },
   { href: "/get-involved", label: "Get Involved" },
   { href: "/about", label: "About" },
-  { href: "/giving", label: "Giving" },
+  { href: "/virtual-tour", label: "Virtual Tour" },
   { href: "/media", label: "Media" },
   { href: "/contact", label: "Contact" },
 ];
@@ -34,39 +49,167 @@ export const nav = [
 export const weeklySchedule = [
   {
     day: "Every Day",
-    title: "Mangala Aarti & Japa",
-    time: "4:30 AM – 6:30 AM",
-    description: "Morning worship and quiet meditation on the holy names.",
+    title: "Mangala Aarti & Tulasi Worship",
+    time: "4:30 AM",
+    description: "Morning worship and devotional offering to Srimati Tulasi Devi.",
   },
   {
     day: "Every Day",
-    title: "Evening Aarti",
-    time: "7:00 PM – 7:30 PM",
+    title: "Greeting of the Deities & Guru Puja",
+    time: "6:45 AM",
+    description: "The Deities' curtains open for the day, followed by worship of the spiritual master.",
+  },
+  {
+    day: "Every Day",
+    title: "Srimad Bhagavatam Class",
+    time: "7:15 AM",
+    description: "Daily scriptural class exploring the teachings of the Srimad Bhagavatam.",
+  },
+  {
+    day: "Every Day",
+    title: "Dhoop Aarti",
+    time: "12:30 PM",
+    description: "Midday offering of incense to the Deities.",
+  },
+  {
+    day: "Every Day",
+    title: "Gaura Aarti",
+    time: "6:30 PM",
     description: "Evening offering of lamps, incense, and kirtan.",
   },
   {
     day: "Sunday",
-    title: "Kirtan",
-    time: "11:00 AM – 12:00 PM",
-    description: "Congregational chanting open to all — no experience needed.",
+    title: "Ecstatic Kirtan",
+    time: "11:00 AM – 11:30 AM",
+    description: "Congregational chanting and dancing open to all — no experience needed.",
   },
   {
     day: "Sunday",
-    title: "Class & Discussion",
-    time: "12:00 PM – 1:00 PM",
-    description: "A talk on the Bhagavad-gita followed by open discussion.",
+    title: "Bhagavad-gita Study & Q&A",
+    time: "11:40 AM – 12:15 PM",
+    description: "A talk on the Bhagavad-gita followed by open questions and discussion.",
   },
   {
     day: "Sunday",
-    title: "Sunday Feast",
-    time: "1:00 PM – 1:30 PM",
-    description: "Free vegetarian feast, offered to Krishna and shared with everyone.",
+    title: "Aarti & Prasadam",
+    time: "12:15 PM – 12:30 PM",
+    description: "Closing aarti followed by a free vegetarian feast, offered to Krishna and shared with everyone.",
   },
   {
     day: "Wednesday",
     title: "Bhagavad-gita Study Circle",
     time: "7:30 PM – 8:30 PM",
     description: "In-depth weekly study group for all levels, online and in person.",
+  },
+] as const;
+
+// Home hero carousel — one slide per key message. `image` points at a file
+// the client should drop into /public/hero/ (see the image-prompt list
+// handed back alongside this file); until that file exists, the slide
+// falls back to a devotional gradient + icon automatically.
+export const heroSlides = [
+  {
+    key: "temple",
+    image: "/hero/slide-1-temple.jpg",
+    eyebrow: "A Gift for Generations",
+    title: "A Grand New Temple Is Coming to Austin",
+    body: "Help us build a permanent home for Krishna consciousness in Central Texas — a worship hall, residences, and gardens for generations of devotees to come.",
+    primaryCta: { label: "Donate to the New Temple", href: "/donate" },
+    secondaryCta: { label: "Take the Virtual Tour", href: "/virtual-tour" },
+    stat: givingProgressLabel(),
+  },
+  {
+    key: "sunday",
+    image: "/hero/slide-2-sunday.jpg",
+    eyebrow: "Every Sunday",
+    title: "Join Us for the Sunday Program",
+    body: "Kirtan, scripture study, and a free feast — every Sunday, open to everyone.",
+    primaryCta: { label: "Plan Your Visit", href: "/visit" },
+    secondaryCta: { label: "Watch Online", href: "/media" },
+    schedule: [
+      { time: "11:00 – 11:30 AM", title: "Ecstatic Kirtan" },
+      { time: "11:40 AM – 12:15 PM", title: "Bhagavad-gita Study & Q&A" },
+      { time: "12:15 – 12:30 PM", title: "Aarti Followed by Prasadam" },
+    ],
+  },
+  {
+    key: "weekly",
+    image: "/hero/slide-3-weekly.jpg",
+    eyebrow: "Every Day",
+    title: "Temple Life, All Week Long",
+    body: "Morning and evening aarti, daily scripture class, and Sunday celebrations — there's always a way to connect.",
+    primaryCta: { label: "View Full Schedule", href: "/visit" },
+    secondaryCta: { label: "See Events", href: "/events" },
+    schedule: [
+      { time: "4:30 AM", title: "Mangala Aarti & Tulasi Worship — Daily" },
+      { time: "7:15 AM", title: "Srimad Bhagavatam Class — Daily" },
+      { time: "6:30 PM", title: "Gaura Aarti — Daily" },
+    ],
+  },
+] as const;
+
+function givingProgressLabel() {
+  return "$3M raised of $5M goal";
+}
+
+// Virtual tour — architectural renderings of the new temple, grouped by
+// Exterior / Interior. Images live in /public/temple-renderings/.
+export const virtualTourImages = [
+  {
+    key: "exterior-01",
+    group: "Exterior" as const,
+    src: "/temple-renderings/exterior-01-entrance-courtyard.jpg",
+    title: "Entrance Courtyard",
+    caption: "Approaching the new temple across the entrance courtyard.",
+  },
+  {
+    key: "exterior-02",
+    group: "Exterior" as const,
+    src: "/temple-renderings/exterior-02-facade.jpg",
+    title: "Temple Facade",
+    caption: "The main facade, viewed from the parking and arrival area.",
+  },
+  {
+    key: "exterior-03",
+    group: "Exterior" as const,
+    src: "/temple-renderings/exterior-03-covered-porch.jpg",
+    title: "Covered Porch",
+    caption: "A shaded, covered porch along the side of the temple.",
+  },
+  {
+    key: "exterior-04",
+    group: "Exterior" as const,
+    src: "/temple-renderings/exterior-04-front-entrance-pool.jpg",
+    title: "Front Entrance & Reflecting Pool",
+    caption: "The front entrance framed by a reflecting pool.",
+  },
+  {
+    key: "exterior-05",
+    group: "Exterior" as const,
+    src: "/temple-renderings/exterior-05-corner-view.jpg",
+    title: "Corner View",
+    caption: "An angled exterior view showing the building's full scale.",
+  },
+  {
+    key: "interior-01",
+    group: "Interior" as const,
+    src: "/temple-renderings/interior-01-altar-hall.jpg",
+    title: "Grand Hall & Altar",
+    caption: "The grand worship hall, leading toward the Radha-Krishna altar.",
+  },
+  {
+    key: "interior-02",
+    group: "Interior" as const,
+    src: "/temple-renderings/interior-02-great-hall.jpg",
+    title: "Great Hall",
+    caption: "A wide view of the great hall, with acharya portraits and lila paintings along the walls.",
+  },
+  {
+    key: "interior-03",
+    group: "Interior" as const,
+    src: "/temple-renderings/interior-03-shrine-alcove.jpg",
+    title: "Shrine Alcove",
+    caption: "A secondary shrine alcove for personal darshan and reflection.",
   },
 ] as const;
 
@@ -125,6 +268,23 @@ export const events: {
     date: "2026-09-24",
     category: "Ekadasi",
     description: "Monthly fasting observance — schedule and preparation guidance provided.",
+  },
+] as const;
+
+// Ongoing outreach programs — recurring activities without a single fixed
+// date, shown separately from the dated events calendar.
+export const ongoingPrograms = [
+  {
+    title: "Book Distribution",
+    description: "Sharing Srila Prabhupada's books with the Austin community at outreach events and public locations.",
+  },
+  {
+    title: "Harinam Sankirtan",
+    description: "Public chanting of the holy names — kirtan processions through the streets and community spaces.",
+  },
+  {
+    title: "Home Programs",
+    description: "Kirtan, class, and prasadam hosted in devotees' homes across Austin — contact us to host one.",
   },
 ] as const;
 

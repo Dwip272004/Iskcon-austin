@@ -63,7 +63,7 @@ export default function Navbar() {
               Watch Online
             </Link>
             <Link
-              href="/giving"
+              href="/donate"
               className="rounded-full bg-gold px-5 py-2.5 text-sm font-semibold text-white hover:bg-gold-light transition-colors shadow-sm"
             >
               Donate
@@ -96,7 +96,7 @@ export default function Navbar() {
               </Link>
             ))}
             <Link
-              href="/giving"
+              href="/donate"
               onClick={() => setOpen(false)}
               className="mt-4 rounded-full bg-gold px-5 py-3 text-center text-sm font-semibold text-white"
             >

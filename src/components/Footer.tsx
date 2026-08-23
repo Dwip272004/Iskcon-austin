@@ -75,6 +75,11 @@ export default function Footer() {
                 {site.email}
               </a>
             </li>
+            <li>
+              <a href={`tel:${site.contactPerson.phone}`} className="hover:text-white">
+                {site.contactPerson.name}: {site.contactPerson.phone}
+              </a>
+            </li>
           </ul>
         </div>
 
@@ -87,7 +92,7 @@ export default function Footer() {
             Austin. Every gift brings us closer.
           </p>
           <Link
-            href="/giving"
+            href="/donate"
             className="mt-4 inline-flex rounded-full bg-gold px-5 py-2.5 text-sm font-semibold text-navy-dark hover:bg-gold-light transition-colors"
           >
             Support the Campaign
