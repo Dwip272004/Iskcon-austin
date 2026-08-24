@@ -7,7 +7,7 @@ import {
   ScriptureIcon,
   TempleSilhouetteIcon,
 } from "@/components/devotional-art";
-import { coreBeliefs, iskconStats } from "@/lib/data";
+import { coreBeliefs, iskconPhilosophy, iskconStats } from "@/lib/data";
 
 const BELIEF_ICONS = [PeacockFeatherIcon, ScriptureIcon, JapaMalaIcon, MandalaIcon];
 
@@ -27,27 +27,26 @@ export default function AboutPage() {
         image="/page-heroes/about.jpg"
       />
 
-      {/* History & philosophy */}
+      {/* History & philosophy — carried over from the original
+          iskconaustin.com About page as closely as possible. */}
       <section className="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-20 grid lg:grid-cols-2 gap-12 items-start">
         <div>
-          <SectionHeading eyebrow="Where We Come From" title="History & Philosophy" />
+          <SectionHeading eyebrow="Where We Come From" title="ISKCON Philosophy" />
           <p className="mt-4 text-ink-soft leading-relaxed">
-            The International Society for Krishna Consciousness (ISKCON) was
-            founded in New York City in 1966 by His Divine Grace A.C.
-            Bhaktivedanta Swami Prabhupada, carrying forward a devotional
-            tradition that traces back over 5,000 years to the teachings of
-            the Bhagavad-gita, and revived in the 15th century by Sri
-            Chaitanya Mahaprabhu.
+            {iskconPhilosophy.intro}
           </p>
-          <p className="mt-4 text-ink-soft leading-relaxed">
-            Today ISKCON has grown into a worldwide movement of temples,
-            farm communities, schools, and cultural centers. ISKCON Austin
-            exists to make Krishna — God — the center of daily life for our
-            local community, through congregational chanting, study of
-            scripture, prasadam, and service to others.
-          </p>
+          {iskconPhilosophy.paragraphs.map((p) => (
+            <p key={p.slice(0, 24)} className="mt-4 text-ink-soft leading-relaxed">
+              {p}
+            </p>
+          ))}
         </div>
-        <ArtPanel icon={TempleSilhouetteIcon} caption="ISKCON Austin" tone="cream" />
+        <ArtPanel
+          icon={TempleSilhouetteIcon}
+          caption="Krishna, the Supreme"
+          tone="cream"
+          photo="/krishna.jpg"
+        />
       </section>
 
       {/* What we believe */}
@@ -81,24 +80,39 @@ export default function AboutPage() {
 
       {/* Founder-Acharya */}
       <section className="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-20 grid lg:grid-cols-2 gap-12 items-start">
-        <ArtPanel icon={ScriptureIcon} caption="Founder-Ācārya Śrīla Prabhupāda" tone="cream" />
+        <ArtPanel
+          icon={ScriptureIcon}
+          caption="Founder-Ācārya Śrīla Prabhupāda"
+          tone="cream"
+          photo="/prabhupada.jpg"
+        />
         <div>
           <SectionHeading eyebrow="Our Founder-Acharya" title="Srila Prabhupada" />
           <p className="mt-4 text-ink-soft leading-relaxed">
-            Born Abhay Charan De in Kolkata in 1896, Srila Prabhupada
-            dedicated his life to sharing the teachings of Krishna
-            consciousness. At the request of his own spiritual master, he
-            set sail for the United States in 1965 at 69 years old, arriving
-            in New York City with little more than a suitcase of his books
-            and the mission to spread bhakti-yoga to the Western world.
+            His Divine Grace A.C. Bhaktivedanta Swami Prabhupada (1896–1977)
+            is widely regarded as the world's foremost teacher of bhakti-yoga
+            to the Western world. Born Abhay Charan De in Calcutta, a meeting
+            with the spiritual leader Srila Bhaktisiddhanta Sarasvati set the
+            course of his life — he was asked to bring the teachings of
+            Krishna to the English-speaking world, a request he wouldn't
+            fulfill until the age of seventy.
           </p>
           <p className="mt-4 text-ink-soft leading-relaxed">
-            Within a year he founded ISKCON, and over the following decade
-            established temples on nearly every continent, translating and
-            writing dozens of books — including Bhagavad-gita As It Is,
-            still the standard translation used by ISKCON temples today. He
-            passed away in Vrindavana, India, in 1977, leaving behind a
-            worldwide movement that continues to grow.
+            In 1965 he boarded a cargo ship bound for New York with just
+            seven dollars and a crate of translated scriptures. After
+            surviving two heart attacks at sea, he arrived in Brooklyn and
+            began teaching the Bhagavad-gita from a Bowery loft and leading
+            kirtan in Tompkins Square Park. In July 1966, he founded the
+            International Society for Krishna Consciousness.
+          </p>
+          <p className="mt-4 text-ink-soft leading-relaxed">
+            Over the next eleven years he circled the globe fourteen times,
+            establishing temples, rural communities, and educational
+            institutions on six continents, and authored more than seventy
+            books — including Bhagavad-gita As It Is, still the standard
+            translation used in ISKCON temples today. He passed away in
+            Vrindavana, India, in 1977, leaving behind a movement that
+            continues to grow worldwide.
           </p>
         </div>
       </section>

@@ -10,11 +10,12 @@ import {
   TempleSilhouetteIcon,
 } from "@/components/devotional-art";
 
-const ICONS = [TempleSilhouetteIcon, KirtanIcon, DiyaIcon];
+// Order matches heroSlides: Sunday, Daily (weekly), New Temple.
+const ICONS = [KirtanIcon, DiyaIcon, TempleSilhouetteIcon];
 const FALLBACK_GRADIENTS = [
-  "from-navy via-navy-dark to-[#0c1a26]",
   "from-maroon via-navy-dark to-navy",
   "from-peacock via-navy-dark to-navy",
+  "from-navy via-navy-dark to-[#0c1a26]",
 ];
 
 const AUTOPLAY_MS = 7000;

@@ -196,6 +196,7 @@ export function ArtPanel({
   ratio = "aspect-[4/3]",
   className = "",
   iconClassName = "w-24 h-24",
+  photo,
 }: {
   icon: ComponentType<{ className?: string }>;
   caption: string;
@@ -203,6 +204,12 @@ export function ArtPanel({
   ratio?: string;
   className?: string;
   iconClassName?: string;
+  /**
+   * Optional path to a real photo under /public (e.g. "/prabhupada.jpg").
+   * Painted over the icon/gradient fallback below it, so a missing file
+   * just leaves the icon panel showing — never a broken-image icon.
+   */
+  photo?: string;
 }) {
   const tones = {
     cream: {
@@ -232,11 +239,25 @@ export function ArtPanel({
     >
       <MandalaIcon className={`absolute -right-8 -bottom-8 w-40 h-40 ${t.pattern}`} />
       <MandalaIcon className={`absolute -left-10 -top-10 w-32 h-32 ${t.pattern}`} />
-      <CornerFrame tone={tone === "cream" ? "gold" : "white"} size={18} inset={12} />
       <Icon className={`${iconClassName} ${t.icon} relative`} />
-      <span className={`relative text-[11px] font-semibold uppercase tracking-wide ${t.caption}`}>
+      {photo && (
+        <>
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${photo})` }}
+            aria-hidden
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" aria-hidden />
+        </>
+      )}
+      <span
+        className={`relative text-[11px] font-semibold uppercase tracking-wide ${
+          photo ? "absolute bottom-4 left-0 right-0 text-white" : t.caption
+        }`}
+      >
         {caption}
       </span>
+      <CornerFrame tone={tone === "cream" ? "gold" : "white"} size={18} inset={12} />
     </div>
   );
 }

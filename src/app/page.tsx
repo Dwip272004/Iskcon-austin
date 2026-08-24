@@ -87,6 +87,14 @@ export default function HomePage() {
                 View on Google Maps
               </a>
             </div>
+            <p className="mt-4 text-xs text-ink-soft">
+              Weekday programs and the new temple are at different
+              addresses —{" "}
+              <Link href="/contact" className="font-semibold text-gold hover:text-gold-light">
+                see all locations
+              </Link>
+              .
+            </p>
           </div>
           <div className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden border border-cream-deep shadow-sm">
             <iframe

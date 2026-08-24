@@ -35,6 +35,35 @@ export const site = {
   },
 };
 
+// ISKCON Austin operates across three addresses — keep them distinct rather
+// than collapsing to a single "site.address".
+export const locations = [
+  {
+    key: "sunday",
+    label: "Sunday Programs",
+    address: "12012 N Interstate 35, Austin, TX 78753, USA",
+    description: "Sunday Feast, kirtan, and the weekly Bhagavad-gita class are held here.",
+    directionsUrl:
+      "https://www.google.com/maps/dir/?api=1&destination=12012+N+Interstate+35%2C+Austin%2C+TX+78753",
+  },
+  {
+    key: "daily",
+    label: "Weekday Daily Programs",
+    address: "10700 Johnwood, Austin, TX", // TODO: confirm ZIP code
+    description: "Daily aarti, Srimad Bhagavatam class, and worship take place here Monday through Saturday.",
+    directionsUrl:
+      "https://www.google.com/maps/dir/?api=1&destination=10700+Johnwood%2C+Austin%2C+TX",
+  },
+  {
+    key: "newTemple",
+    label: "New Temple (Under Construction)",
+    address: "1311 Collinwood W Dr, Austin, TX 78753, USA",
+    description: "Site of ISKCON Austin's future permanent home — see the Virtual Tour for renderings.",
+    directionsUrl:
+      "https://www.google.com/maps/dir/?api=1&destination=1311+Collinwood+W+Dr%2C+Austin%2C+TX+78753",
+  },
+] as const;
+
 export const nav = [
   { href: "/", label: "Home" },
   { href: "/visit", label: "Visit" },
@@ -108,16 +137,6 @@ export const weeklySchedule = [
 // falls back to a devotional gradient + icon automatically.
 export const heroSlides = [
   {
-    key: "temple",
-    image: "/hero/slide-1-temple.jpg",
-    eyebrow: "A Gift for Generations",
-    title: "A Grand New Temple Is Coming to Austin",
-    body: "Help us build a permanent home for Krishna consciousness in Central Texas — a worship hall, residences, and gardens for generations of devotees to come.",
-    primaryCta: { label: "Donate to the New Temple", href: "/donate" },
-    secondaryCta: { label: "Take the Virtual Tour", href: "/virtual-tour" },
-    stat: givingProgressLabel(),
-  },
-  {
     key: "sunday",
     image: "/hero/slide-2-sunday.jpg",
     eyebrow: "Every Sunday",
@@ -144,6 +163,16 @@ export const heroSlides = [
       { time: "7:15 AM", title: "Srimad Bhagavatam Class — Daily" },
       { time: "6:30 PM", title: "Gaura Aarti — Daily" },
     ],
+  },
+  {
+    key: "temple",
+    image: "/hero/slide-1-temple.jpg",
+    eyebrow: "A Gift for Generations",
+    title: "A Grand New Temple Is Coming to Austin",
+    body: "Help us build a permanent home for Krishna consciousness in Central Texas — a worship hall, residences, and gardens for generations of devotees to come.",
+    primaryCta: { label: "Donate to the New Temple", href: "/donate" },
+    secondaryCta: { label: "Take the Virtual Tour", href: "/virtual-tour" },
+    stat: givingProgressLabel(),
   },
 ] as const;
 
@@ -212,61 +241,63 @@ export const virtualTourImages = [
   },
 ] as const;
 
-export type EventCategory = "Festival" | "Ekadasi" | "Class" | "Community";
+export type EventCategory = "Festival" | "Class" | "Community";
 
 export const events: {
   title: string;
   date: string; // ISO date, TODO: replace with real dates
   category: EventCategory;
   description: string;
+  location: string;
+  time: string; // TODO: confirm exact timing with the temple calendar
 }[] = [
   {
     title: "Janmashtami — Appearance of Lord Krishna",
     date: "2026-09-04",
     category: "Festival",
     description: "The biggest celebration of the year: abhishek, kirtan, drama, and a midnight feast.",
+    location: "12012 N Interstate 35, Austin, TX 78753",
+    time: "6:00 PM – 12:00 AM",
   },
   {
     title: "Radhastami",
     date: "2026-09-19",
     category: "Festival",
     description: "Celebrating the appearance of Srimati Radharani with special offerings and kirtan.",
-  },
-  {
-    title: "Ekadasi Fasting Day",
-    date: "2026-09-09",
-    category: "Ekadasi",
-    description: "Monthly fasting observance — schedule and preparation guidance provided.",
+    location: "12012 N Interstate 35, Austin, TX 78753",
+    time: "6:00 PM – 8:30 PM",
   },
   {
     title: "Govardhan Puja",
     date: "2026-10-23",
     category: "Festival",
     description: "Annapurna offering of 108 preparations and re-enactment of Krishna lifting Govardhan Hill.",
+    location: "12012 N Interstate 35, Austin, TX 78753",
+    time: "6:00 PM – 8:30 PM",
   },
   {
     title: "New Devotee Class",
     date: "2026-09-12",
     category: "Class",
     description: "A friendly introduction to the philosophy and practice of bhakti-yoga.",
+    location: "12012 N Interstate 35, Austin, TX 78753",
+    time: "6:00 PM – 7:00 PM",
   },
   {
     title: "Prabhupada Marathon Book Distribution",
     date: "2026-10-01",
     category: "Community",
     description: "Community outreach distributing Srila Prabhupada's books across Austin.",
+    location: "Various locations around Austin, TX",
+    time: "10:00 AM – 4:00 PM",
   },
   {
     title: "Diwali / Dipavali Celebration",
     date: "2026-11-08",
     category: "Festival",
     description: "Festival of lights with lamp offerings, kirtan, and feast.",
-  },
-  {
-    title: "Ekadasi Fasting Day",
-    date: "2026-09-24",
-    category: "Ekadasi",
-    description: "Monthly fasting observance — schedule and preparation guidance provided.",
+    location: "12012 N Interstate 35, Austin, TX 78753",
+    time: "6:00 PM – 9:00 PM",
   },
 ] as const;
 
@@ -310,6 +341,17 @@ export const givingFunds = [
     stat: "Ongoing — every gift helps",
   },
 ] as const;
+
+// ISKCON philosophy copy, carried over from the original iskconaustin.com
+// About page as closely as possible (source: iskconaustin.com/about/).
+export const iskconPhilosophy = {
+  intro:
+    "Welcome to our website. We are the ISKCON Austin Hare Krishna center, the Austin, Texas USA branch of ISKCON, the International Society for Krishna Consciousness. ISKCON is a worldwide organization of over 650 temples and centers that was started in New York City in 1966. Globally we are endeavoring to bring to planet earth a new age of unparalleled peace and prosperity for all. And locally we are dedicated to making Austin a spiritual city where everyone lives in perfect peace and harmony by making Krishna or God the center of their lives.",
+  paragraphs: [
+    "ISKCON is popularly known as the Hare Krishna Movement. This is a movement with historical roots going back at least 5,000 years ago to the time when Lord Sri Krishna was present on the planet in India and spoke the now famous Bhagavad-gita to his beloved friend Arjuna.",
+    "In the later part of the 15th century, Sri Chaitanya Mahaprabhu revitalized the bhakti tradition by introducing an expansive spiritual movement that swept India. Central to this renaissance was Chaitanya Mahaprabhu's emphasis on the chanting of Lord Krishna's holy names. Underlying the practice was a profound, rational, and intellectually comprehensive theology. ISKCON is a continuation of the movement that Sri Chaitanya revitalized.",
+  ],
+} as const;
 
 // Core teachings, shown as a card grid on the About page.
 export const coreBeliefs = [

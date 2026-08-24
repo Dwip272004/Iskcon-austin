@@ -96,7 +96,7 @@ export default function VisitPage() {
           <SectionHeading eyebrow="Getting Here" title="Directions & Parking" />
           <div className="mt-6 space-y-4 text-sm text-ink-soft leading-relaxed">
             <p>
-              <span className="font-semibold text-navy">Address: </span>
+              <span className="font-semibold text-navy">Sunday Program Address: </span>
               {site.address}
             </p>
             <p>
@@ -108,6 +108,14 @@ export default function VisitPage() {
               <span className="font-semibold text-navy">Accessibility: </span>
               TODO: confirm wheelchair access, ramps, and accessible seating
               details.
+            </p>
+            <p>
+              Weekday programs and the new temple are at different
+              addresses —{" "}
+              <Link href="/contact" className="font-semibold text-gold hover:text-gold-light underline underline-offset-2">
+                see all locations
+              </Link>
+              .
             </p>
           </div>
           <Button href="/contact" variant="secondary" className="mt-6">

@@ -15,7 +15,7 @@ const PROGRAM_ICONS = [ScriptureIcon, KirtanIcon, PrasadamIcon];
 export const metadata: Metadata = {
   title: "Get Involved & Events",
   description:
-    "Volunteer at ISKCON Austin and see what's happening: Sunday Feast seva, book distribution, festivals, Ekadasi fasting days, classes, and community events.",
+    "Volunteer at ISKCON Austin and see what's happening: Sunday Feast seva, book distribution, festivals, classes, and community events.",
 };
 
 export default function GetInvolvedPage() {
@@ -104,7 +104,7 @@ export default function GetInvolvedPage() {
           <SectionHeading
             eyebrow="Mark Your Calendar"
             title="Festivals & Events"
-            description="Filter by category to find festivals, Ekadasi fasting days, classes, and community events."
+            description="Filter by category to find festivals, classes, and community events."
           />
           <div className="mt-8">
             <EventsList />

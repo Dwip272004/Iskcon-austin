@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
-import { ArtPanel, PageHero, SectionHeading } from "@/components/ui";
+import { ArtPanel, Card, PageHero, SectionHeading } from "@/components/ui";
 import { MapPinIcon } from "@/components/devotional-art";
-import { site } from "@/lib/data";
+import { locations, site } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Get in touch with ISKCON Austin — phone, email, address, and directions to the temple.",
+    "Get in touch with ISKCON Austin — phone, email, and addresses for Sunday programs, weekday programs, and the new temple.",
 };
 
 const details = [
-  { label: "Address", value: site.address },
   { label: "Phone", value: site.phone, href: `tel:${site.phone}` },
   { label: "Email", value: site.email, href: `mailto:${site.email}` },
   { label: "Sunday Hours", value: site.hours },
@@ -29,6 +28,41 @@ export default function ContactPage() {
         title="Contact Us"
         image="/page-heroes/contact.jpg"
       />
+
+      {/* Our locations */}
+      <section className="bg-cream">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-20">
+          <SectionHeading
+            eyebrow="Where To Find Us"
+            title="Our Locations"
+            description="ISKCON Austin currently operates across three locations — please make sure you're headed to the right one."
+          />
+          <div className="mt-10 grid sm:grid-cols-3 gap-6">
+            {locations.map((l) => (
+              <Card key={l.key} className="p-6">
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-gold border border-cream-deep">
+                  <MapPinIcon className="w-5 h-5" />
+                </span>
+                <h3 className="font-display text-lg font-semibold text-navy mt-4">
+                  {l.label}
+                </h3>
+                <p className="mt-2 text-sm font-medium text-navy">{l.address}</p>
+                <p className="mt-2 text-sm text-ink-soft leading-relaxed">
+                  {l.description}
+                </p>
+                <a
+                  href={l.directionsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-gold hover:text-gold-light"
+                >
+                  Get Directions →
+                </a>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <section className="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-20 grid lg:grid-cols-2 gap-12">
         <div>

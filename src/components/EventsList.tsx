@@ -2,12 +2,12 @@
 
 import { useMemo, useState } from "react";
 import { Card, Pill } from "@/components/ui";
+import { MapPinIcon } from "@/components/devotional-art";
 import { events, type EventCategory } from "@/lib/data";
 
 const categories: (EventCategory | "All")[] = [
   "All",
   "Festival",
-  "Ekadasi",
   "Class",
   "Community",
 ];
@@ -69,6 +69,13 @@ export default function EventsList() {
               <p className="mt-2 text-sm text-ink-soft leading-relaxed">
                 {e.description}
               </p>
+              <div className="mt-3 space-y-1 text-xs text-ink-soft">
+                <p className="font-semibold text-gold">{e.time}</p>
+                <p className="flex items-start gap-1.5">
+                  <MapPinIcon className="w-3.5 h-3.5 shrink-0 mt-0.5 text-gold" />
+                  {e.location}
+                </p>
+              </div>
             </div>
           </Card>
         ))}
