@@ -250,13 +250,11 @@ export function ArtPanel({
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" aria-hidden />
         </>
       )}
-      <span
-        className={`relative text-[11px] font-semibold uppercase tracking-wide ${
-          photo ? "absolute bottom-4 left-0 right-0 text-white" : t.caption
-        }`}
-      >
-        {caption}
-      </span>
+      {!photo && (
+        <span className={`relative text-[11px] font-semibold uppercase tracking-wide ${t.caption}`}>
+          {caption}
+        </span>
+      )}
       <CornerFrame tone={tone === "cream" ? "gold" : "white"} size={18} inset={12} />
     </div>
   );

@@ -169,7 +169,12 @@ export default function AboutPage() {
             </Button>
           </div>
         </div>
-        <ArtPanel icon={TempleSilhouetteIcon} caption="New Temple — Rendering Coming Soon" tone="cream" />
+        <ArtPanel
+          icon={TempleSilhouetteIcon}
+          caption="New Temple — Architectural Rendering"
+          tone="cream"
+          photo="/temple-renderings/exterior-05-corner-view.jpg"
+        />
       </section>
     </div>
   );
