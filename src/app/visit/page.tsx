@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArtPanel, Button, Card, PageHero, SectionHeading } from "@/components/ui";
+import { ArtPanel, Card, PageHero, SectionHeading } from "@/components/ui";
 import { MapPinIcon, NamasteIcon } from "@/components/devotional-art";
-import { faqs, site, weeklySchedule } from "@/lib/data";
+import { faqs, locations, weeklySchedule } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Visit Us",
@@ -89,38 +89,51 @@ export default function VisitPage() {
         </div>
       </section>
 
-      {/* Directions & parking */}
-      <section className="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-20 grid lg:grid-cols-2 gap-12 items-start">
-        <ArtPanel icon={MapPinIcon} caption="Map & Directions" tone="cream" ratio="aspect-[4/3]" />
-        <div>
-          <SectionHeading eyebrow="Getting Here" title="Directions & Parking" />
-          <div className="mt-6 space-y-4 text-sm text-ink-soft leading-relaxed">
-            <p>
-              <span className="font-semibold text-navy">Sunday Program Address: </span>
-              {site.address}
-            </p>
+      {/* Directions & parking — every address in one place */}
+      <section className="bg-cream">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-20">
+          <SectionHeading
+            eyebrow="Getting Here"
+            title="Directions & Parking"
+            description="ISKCON Austin operates across three locations — find the right one below and tap Get Directions."
+          />
+          <div className="mt-10 grid sm:grid-cols-3 gap-6">
+            {locations.map((l) => (
+              <Card key={l.key} className="p-6">
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-gold border border-cream-deep">
+                  <MapPinIcon className="w-5 h-5" />
+                </span>
+                <h3 className="font-display text-lg font-semibold text-navy mt-4">
+                  {l.label}
+                </h3>
+                <p className="mt-2 text-sm font-medium text-navy">{l.address}</p>
+                <p className="mt-2 text-sm text-ink-soft leading-relaxed">
+                  {l.description}
+                </p>
+                <a
+                  href={l.directionsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-gold hover:text-gold-light"
+                >
+                  Get Directions →
+                </a>
+              </Card>
+            ))}
+          </div>
+          <div className="mt-10 grid sm:grid-cols-2 gap-6 text-sm text-ink-soft leading-relaxed">
             <p>
               <span className="font-semibold text-navy">Parking: </span>
-              Free on-site parking is available. TODO: confirm parking
-              details once the new temple location is finalized.
+              Free on-site parking is available at each location. TODO:
+              confirm parking details once the new temple location is
+              finalized.
             </p>
             <p>
               <span className="font-semibold text-navy">Accessibility: </span>
               TODO: confirm wheelchair access, ramps, and accessible seating
               details.
             </p>
-            <p>
-              Weekday programs and the new temple are at different
-              addresses —{" "}
-              <Link href="/contact" className="font-semibold text-gold hover:text-gold-light underline underline-offset-2">
-                see all locations
-              </Link>
-              .
-            </p>
           </div>
-          <Button href="/contact" variant="secondary" className="mt-6">
-            Get Directions
-          </Button>
         </div>
       </section>
 
