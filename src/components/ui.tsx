@@ -23,7 +23,7 @@ export function PageHero({
   image,
 }: {
   eyebrow: string;
-  title: string;
+  title: ReactNode;
   description?: string;
   /**
    * Optional path to a photo under /public (e.g. "/page-heroes/visit.jpg").
@@ -250,11 +250,15 @@ export function ArtPanel({
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" aria-hidden />
         </>
       )}
-      {!photo && (
-        <span className={`relative text-[11px] font-semibold uppercase tracking-wide ${t.caption}`}>
-          {caption}
-        </span>
-      )}
+      <span
+        className={
+          photo
+            ? "absolute top-3 left-3 z-10 rounded-full bg-navy/80 backdrop-blur-sm px-3 py-1 text-[10px] font-semibold uppercase tracking-wide text-white shadow-sm"
+            : `relative text-[11px] font-semibold uppercase tracking-wide ${t.caption}`
+        }
+      >
+        {caption}
+      </span>
       <CornerFrame tone={tone === "cream" ? "gold" : "white"} size={18} inset={12} />
     </div>
   );

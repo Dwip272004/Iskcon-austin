@@ -12,7 +12,7 @@ export const site = {
   phone: "+1-512-835-2121", // TODO: confirm current number
   email: "info@iskconaustin.com", // TODO: confirm current inbox
   address: "12012 North IH 35, Austin, TX 78753", // TODO: confirm current/new address
-  hours: "Sundays, 11:00 AM – 12:30 PM", // TODO: confirm single source of truth for hours
+  hours: "Sundays, 11:00 AM – 1:00 PM", // TODO: confirm single source of truth for hours
   socials: {
     facebook: "https://facebook.com/iskconaustin",
     instagram: "https://instagram.com/iskconaustin",
@@ -114,13 +114,13 @@ export const weeklySchedule = [
   {
     day: "Sunday",
     title: "Bhagavad-gita Study & Q&A",
-    time: "11:40 AM – 12:15 PM",
+    time: "11:40 AM – 12:30 PM",
     description: "A talk on the Bhagavad-gita followed by open questions and discussion.",
   },
   {
     day: "Sunday",
     title: "Aarti & Prasadam",
-    time: "12:15 PM – 12:30 PM",
+    time: "12:30 PM – 1:00 PM", // TODO: confirm exact end time with the temple
     description: "Closing aarti followed by a free vegetarian feast, offered to Krishna and shared with everyone.",
   },
   {
@@ -138,7 +138,7 @@ export const weeklySchedule = [
 export const heroSlides = [
   {
     key: "sunday",
-    image: "/hero/slide-2-sunday.jpg",
+    image: "/temple-renderings/interior-02-great-hall.jpg",
     eyebrow: "Every Sunday",
     title: "Join Us for the Sunday Program",
     body: "Kirtan, scripture study, and a free feast — every Sunday, open to everyone.",
@@ -146,13 +146,13 @@ export const heroSlides = [
     secondaryCta: { label: "Watch Online", href: "/media" },
     schedule: [
       { time: "11:00 – 11:30 AM", title: "Ecstatic Kirtan" },
-      { time: "11:40 AM – 12:15 PM", title: "Bhagavad-gita Study & Q&A" },
-      { time: "12:15 – 12:30 PM", title: "Aarti Followed by Prasadam" },
+      { time: "11:40 AM – 12:30 PM", title: "Bhagavad-gita Study & Q&A" },
+      { time: "12:30 – 1:00 PM", title: "Aarti Followed by Prasadam" },
     ],
   },
   {
     key: "weekly",
-    image: "/hero/slide-3-weekly.jpg",
+    image: "/temple-renderings/interior-01-altar-hall.jpg",
     eyebrow: "Every Day",
     title: "Temple Life, All Week Long",
     body: "Morning and evening aarti, daily scripture class, and Sunday celebrations — there's always a way to connect.",
@@ -166,7 +166,7 @@ export const heroSlides = [
   },
   {
     key: "temple",
-    image: "/hero/slide-1-temple.jpg",
+    image: "/temple-renderings/exterior-04-front-entrance-pool.jpg",
     eyebrow: "A Gift for Generations",
     title: "A Grand New Temple Is Coming to Austin",
     body: "Help us build a permanent home for Krishna consciousness in Central Texas — a worship hall, residences, and gardens for generations of devotees to come.",
@@ -269,19 +269,11 @@ export const events: {
   },
   {
     title: "Govardhan Puja",
-    date: "2026-10-23",
+    date: "2026-11-09",
     category: "Festival",
     description: "Annapurna offering of 108 preparations and re-enactment of Krishna lifting Govardhan Hill.",
-    location: "12012 N Interstate 35, Austin, TX 78753",
+    location: "12012 N Interstate 35, Austin, TX 78753", // I-35 location
     time: "6:00 PM – 8:30 PM",
-  },
-  {
-    title: "New Devotee Class",
-    date: "2026-09-12",
-    category: "Class",
-    description: "A friendly introduction to the philosophy and practice of bhakti-yoga.",
-    location: "12012 N Interstate 35, Austin, TX 78753",
-    time: "6:00 PM – 7:00 PM",
   },
   {
     title: "Prabhupada Marathon Book Distribution",
@@ -295,9 +287,9 @@ export const events: {
     title: "Diwali / Dipavali Celebration",
     date: "2026-11-08",
     category: "Festival",
-    description: "Festival of lights with lamp offerings, kirtan, and feast.",
+    description: "No celebration is planned at the temple this year — check back for updates in future years.",
     location: "12012 N Interstate 35, Austin, TX 78753",
-    time: "6:00 PM – 9:00 PM",
+    time: "No celebration this year",
   },
 ] as const;
 

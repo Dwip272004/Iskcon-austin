@@ -46,7 +46,7 @@ export default function MediaPage() {
         eyebrow="Watch & Listen"
         title="Media"
         description="Can't make it in person? Join us online for live programs, or catch up with our video archive and photo gallery."
-        image="/page-heroes/media.jpg"
+        image="/temple-renderings/interior-01-altar-hall.jpg"
       />
 
       {/* Livestream */}

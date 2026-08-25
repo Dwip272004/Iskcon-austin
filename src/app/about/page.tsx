@@ -22,9 +22,16 @@ export default function AboutPage() {
     <div>
       <PageHero
         eyebrow="Our Story"
-        title="About ISKCON Austin"
+        title={
+          <>
+            About ISKCON Austin
+            <span className="block mt-1 text-5xl sm:text-6xl text-gold-light">
+              Krishna Consciousness
+            </span>
+          </>
+        }
         description="Part of a global tradition of bhakti-yoga, rooted in Austin since our community's earliest devotees gathered to chant, study, and share prasadam."
-        image="/page-heroes/about.jpg"
+        image="/temple-renderings/exterior-01-entrance-courtyard.jpg"
       />
 
       {/* History & philosophy — carried over from the original
@@ -45,7 +52,7 @@ export default function AboutPage() {
           icon={TempleSilhouetteIcon}
           caption="Krishna, the Supreme"
           tone="cream"
-          photo="/krishna.jpg"
+          photo="/temple-renderings/interior-03-shrine-alcove.jpg"
         />
       </section>
 
@@ -84,7 +91,7 @@ export default function AboutPage() {
           icon={ScriptureIcon}
           caption="Founder-Ācārya Śrīla Prabhupāda"
           tone="cream"
-          photo="/prabhupada.jpg"
+          photo="/temple-renderings/interior-02-great-hall.jpg"
         />
         <div>
           <SectionHeading eyebrow="Our Founder-Acharya" title="Srila Prabhupada" />

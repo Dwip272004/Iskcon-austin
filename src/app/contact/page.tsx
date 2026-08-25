@@ -26,7 +26,7 @@ export default function ContactPage() {
       <PageHero
         eyebrow="We'd Love to Hear From You"
         title="Contact Us"
-        image="/page-heroes/contact.jpg"
+        image="/temple-renderings/exterior-04-front-entrance-pool.jpg"
       />
 
       {/* Our locations */}

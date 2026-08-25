@@ -17,7 +17,7 @@ export default function VisitPage() {
         eyebrow="New Here?"
         title="Plan Your Visit"
         description="Everyone is welcome at ISKCON Austin — no invitation, dress code, or prior knowledge needed. Here's everything to know before you come."
-        image="/page-heroes/visit.jpg"
+        image="/temple-renderings/exterior-03-covered-porch.jpg"
       />
 
       {/* What to expect */}

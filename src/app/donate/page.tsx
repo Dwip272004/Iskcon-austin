@@ -31,7 +31,7 @@ export default function DonatePage() {
         eyebrow="Support the Temple"
         title="Donate"
         description="Whether you're supporting our new temple or everyday worship and seva, your gift keeps Krishna consciousness alive in Austin."
-        image="/page-heroes/donate.jpg"
+        image="/temple-renderings/exterior-05-corner-view.jpg"
       />
 
       <section className="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-20 grid lg:grid-cols-[1fr_1.2fr] gap-12 items-start">

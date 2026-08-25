@@ -34,7 +34,7 @@ export default function KCAtHomePage() {
         eyebrow="Practice Anywhere"
         title="Krishna Consciousness at Home"
         description="You don't need to live at the temple to live a devotional life. With a little determination, any home can become a place of worship."
-        image="/page-heroes/kc-at-home.jpg"
+        image="/temple-renderings/interior-03-shrine-alcove.jpg"
       />
 
       {/* Intro */}

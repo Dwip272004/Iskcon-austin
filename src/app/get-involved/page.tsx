@@ -25,7 +25,7 @@ export default function GetInvolvedPage() {
         eyebrow="Serve & Celebrate With Us"
         title="Get Involved & Events"
         description="Devotional service (seva) is at the heart of temple life — and there's always a festival, class, or celebration on the calendar to join."
-        image="/page-heroes/get-involved.jpg"
+        image="/temple-renderings/interior-02-great-hall.jpg"
       />
 
       {/* Volunteer opportunities */}
