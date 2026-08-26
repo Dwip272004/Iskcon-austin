@@ -1,0 +1,63 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import Image from "next/image";
+
+/**
+ * Full-screen entry splash announcing upcoming festivals. Shown once per
+ * browser session (tracked in sessionStorage) — visitors click anywhere in
+ * the surrounding area to dismiss it and reach the site underneath.
+ */
+export default function FestivalSplash() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    try {
+      const dismissed = sessionStorage.getItem("iskcon-festival-splash-dismissed");
+      if (!dismissed) setVisible(true);
+    } catch {
+      // sessionStorage unavailable (private browsing, etc.) — just show it.
+      setVisible(true);
+    }
+  }, []);
+
+  const dismiss = () => {
+    try {
+      sessionStorage.setItem("iskcon-festival-splash-dismissed", "1");
+    } catch {
+      // ignore
+    }
+    setVisible(false);
+  };
+
+  if (!visible) return null;
+
+  return (
+    <div
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-navy-dark/90 backdrop-blur-sm p-4 sm:p-8 cursor-pointer animate-[fadeIn_0.3s_ease-out]"
+      onClick={dismiss}
+      role="button"
+      tabIndex={0}
+      aria-label="Click anywhere to enter the ISKCON Austin website"
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") dismiss();
+      }}
+    >
+      <div className="relative max-w-xs sm:max-w-sm w-full text-center">
+        <div className="relative w-full overflow-hidden rounded-2xl shadow-2xl ring-1 ring-white/10">
+          <Image
+            src="/splash/festival-poster.png"
+            alt="Celebrate Divine Joy at ISKCON Austin — three auspicious festivals: Balram Purnima on August 27, Sri Krishna Janmashtami on September 4, and Srila Prabhupada Appearance Day on September 5, 2026"
+            width={593}
+            height={885}
+            className="w-full h-auto"
+            priority
+          />
+        </div>
+        <p className="mt-5 text-white/80 text-xs sm:text-sm font-semibold uppercase tracking-[0.2em]">
+          Tap anywhere to enter the site
+        </p>
+      </div>
+    </div>
+  );
+}
