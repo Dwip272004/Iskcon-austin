@@ -6,6 +6,11 @@ import { CornerFrame } from "@/components/ornaments";
 import { virtualTourImages } from "@/lib/data";
 
 type Group = (typeof virtualTourImages)[number]["group"];
+type TourImage = (typeof virtualTourImages)[number];
+
+const SET_LABELS: Record<string, string> = {
+  "temple-front": "Temple Front",
+};
 
 export default function VirtualTourGallery() {
   const [filter, setFilter] = useState<Group | "All">("All");
@@ -15,6 +20,29 @@ export default function VirtualTourGallery() {
     filter === "All"
       ? virtualTourImages
       : virtualTourImages.filter((img) => img.group === filter);
+
+  // Group any images sharing a `set` key into a single gallery tile that
+  // cycles through its photos, while ungrouped images stay as-is. The
+  // lightbox still walks the flat `visible` array, so indexes line up.
+  type Tile =
+    | { type: "single"; img: TourImage; index: number }
+    | { type: "set"; setKey: string; images: { img: TourImage; index: number }[] };
+
+  const tiles: Tile[] = [];
+  const seenSets = new Set<string>();
+  visible.forEach((img, index) => {
+    const setKey = "set" in img ? (img as { set?: string }).set : undefined;
+    if (setKey) {
+      if (seenSets.has(setKey)) return;
+      seenSets.add(setKey);
+      const images = visible
+        .map((im, i) => ({ img: im, index: i }))
+        .filter(({ img: im }) => ("set" in im ? (im as { set?: string }).set : undefined) === setKey);
+      tiles.push({ type: "set", setKey, images });
+    } else {
+      tiles.push({ type: "single", img, index });
+    }
+  });
 
   const close = useCallback(() => setOpenIndex(null), []);
   const next = useCallback(() => {
@@ -61,31 +89,40 @@ export default function VirtualTourGallery() {
       </div>
 
       <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {visible.map((img, i) => (
-          <button
-            key={img.key}
-            onClick={() => setOpenIndex(i)}
-            className="group relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-cream-deep bg-cream text-left shadow-sm"
-          >
-            <Image
-              src={img.src}
-              alt={img.title}
-              fill
-              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
+        {tiles.map((tile) =>
+          tile.type === "single" ? (
+            <button
+              key={tile.img.key}
+              onClick={() => setOpenIndex(tile.index)}
+              className="group relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-cream-deep bg-cream text-left shadow-sm"
+            >
+              <Image
+                src={tile.img.src}
+                alt={tile.img.title}
+                fill
+                sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/85 via-navy-dark/0 to-transparent" />
+              <CornerFrame tone="white" size={16} inset={8} />
+              <div className="absolute inset-x-0 bottom-0 p-4">
+                <span className="inline-block rounded-full bg-white/15 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-gold-light backdrop-blur-sm">
+                  {tile.img.group}
+                </span>
+                <p className="mt-1.5 font-display text-lg font-semibold text-white">
+                  {tile.img.title}
+                </p>
+              </div>
+            </button>
+          ) : (
+            <SetTile
+              key={tile.setKey}
+              label={SET_LABELS[tile.setKey] ?? tile.setKey}
+              images={tile.images}
+              onOpen={setOpenIndex}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/85 via-navy-dark/0 to-transparent" />
-            <CornerFrame tone="white" size={16} inset={8} />
-            <div className="absolute inset-x-0 bottom-0 p-4">
-              <span className="inline-block rounded-full bg-white/15 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-gold-light backdrop-blur-sm">
-                {img.group}
-              </span>
-              <p className="mt-1.5 font-display text-lg font-semibold text-white">
-                {img.title}
-              </p>
-            </div>
-          </button>
-        ))}
+          )
+        )}
       </div>
 
       {openIndex !== null && visible[openIndex] && (
@@ -154,6 +191,91 @@ export default function VirtualTourGallery() {
           </div>
         </div>
       )}
+    </div>
+  );
+}
+
+/**
+ * A single gallery tile that cycles through several related photos (e.g.
+ * "Temple Front" combines the entrance courtyard, facade, and reflecting
+ * pool views into one card). Clicking the photo opens the full lightbox at
+ * whichever sub-image is currently showing.
+ */
+function SetTile({
+  label,
+  images,
+  onOpen,
+}: {
+  label: string;
+  images: { img: TourImage; index: number }[];
+  onOpen: (index: number) => void;
+}) {
+  const [sub, setSub] = useState(0);
+  const current = images[sub];
+
+  return (
+    <div className="group relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-cream-deep bg-cream shadow-sm">
+      <button
+        onClick={() => onOpen(current.index)}
+        className="absolute inset-0 text-left"
+        aria-label={`${label}: ${current.img.title}`}
+      >
+        <Image
+          src={current.img.src}
+          alt={current.img.title}
+          fill
+          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/85 via-navy-dark/0 to-transparent" />
+      </button>
+      <CornerFrame tone="white" size={16} inset={8} />
+
+      {images.length > 1 && (
+        <>
+          <button
+            aria-label="Previous photo in this set"
+            onClick={(e) => {
+              e.stopPropagation();
+              setSub((i) => (i - 1 + images.length) % images.length);
+            }}
+            className="absolute left-2 top-1/2 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full bg-white/15 border border-white/25 text-white text-sm hover:bg-white/25 transition-colors"
+          >
+            ‹
+          </button>
+          <button
+            aria-label="Next photo in this set"
+            onClick={(e) => {
+              e.stopPropagation();
+              setSub((i) => (i + 1) % images.length);
+            }}
+            className="absolute right-2 top-1/2 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full bg-white/15 border border-white/25 text-white text-sm hover:bg-white/25 transition-colors"
+          >
+            ›
+          </button>
+        </>
+      )}
+
+      <div className="absolute inset-x-0 bottom-0 p-4 pointer-events-none">
+        <span className="inline-block rounded-full bg-gold/90 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white backdrop-blur-sm">
+          {label}
+        </span>
+        <p className="mt-1.5 font-display text-lg font-semibold text-white">
+          {current.img.title}
+        </p>
+        {images.length > 1 && (
+          <div className="mt-1.5 flex gap-1.5">
+            {images.map((im, i) => (
+              <span
+                key={im.img.key}
+                className={`h-1.5 rounded-full transition-all ${
+                  i === sub ? "w-5 bg-gold-light" : "w-1.5 bg-white/50"
+                }`}
+              />
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

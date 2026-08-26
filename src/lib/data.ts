@@ -189,6 +189,9 @@ export const virtualTourImages = [
     src: "/temple-renderings/exterior-01-entrance-courtyard.jpg",
     title: "Entrance Courtyard",
     caption: "Approaching the new temple across the entrance courtyard.",
+    // Grouped with the other "Temple Front" views into a single gallery
+    // tile that cycles through all three photos.
+    set: "temple-front",
   },
   {
     key: "exterior-02",
@@ -196,6 +199,7 @@ export const virtualTourImages = [
     src: "/temple-renderings/exterior-02-facade.jpg",
     title: "Temple Facade",
     caption: "The main facade, viewed from the parking and arrival area.",
+    set: "temple-front",
   },
   {
     key: "exterior-03",
@@ -210,6 +214,7 @@ export const virtualTourImages = [
     src: "/temple-renderings/exterior-04-front-entrance-pool.jpg",
     title: "Front Entrance & Reflecting Pool",
     caption: "The front entrance framed by a reflecting pool.",
+    set: "temple-front",
   },
   {
     key: "exterior-05",
@@ -236,7 +241,7 @@ export const virtualTourImages = [
     key: "interior-03",
     group: "Interior" as const,
     src: "/temple-renderings/interior-03-shrine-alcove.jpg",
-    title: "Shrine Alcove",
+    title: "Srila Prabhupada",
     caption: "A secondary shrine alcove for personal darshan and reflection.",
   },
 ] as const;

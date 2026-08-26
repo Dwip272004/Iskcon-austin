@@ -9,11 +9,12 @@ import {
 import { MapPinIcon } from "@/components/devotional-art";
 import { CornerFrame, OrnamentDivider } from "@/components/ornaments";
 import HeroCarousel from "@/components/HeroCarousel";
-import { events, givingFunds, site, weeklySchedule } from "@/lib/data";
+import { events, givingFunds, locations, site, weeklySchedule } from "@/lib/data";
 
 export default function HomePage() {
   const sundayItems = weeklySchedule.filter((s) => s.day === "Sunday");
   const upcoming = events.slice(0, 3);
+  const dailyLocation = locations.find((l) => l.key === "daily")!;
 
   return (
     <div>
@@ -41,6 +42,28 @@ export default function HomePage() {
             </Card>
           ))}
         </div>
+
+        {/* Second row: daily (weekday) programs */}
+        <div className="mt-6">
+          <Card className="p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wide text-gold">
+                Every Day, Monday–Saturday
+              </p>
+              <h3 className="font-display text-xl font-semibold text-navy mt-2">
+                Daily Programs at Our Weekday Location
+              </h3>
+              <p className="mt-2 text-sm text-ink-soft leading-relaxed">
+                Mangala Aarti, Srimad Bhagavatam class, and evening aarti happen
+                every day at {dailyLocation.address}.
+              </p>
+            </div>
+            <Button href="/visit" variant="secondary" className="shrink-0">
+              View Daily Programs
+            </Button>
+          </Card>
+        </div>
+
         <div className="mt-8 flex flex-wrap gap-4">
           <Button href="/visit" variant="secondary">
             View Full Weekly Schedule
@@ -57,14 +80,17 @@ export default function HomePage() {
           <div>
             <SectionHeading
               eyebrow="Find Us"
-              title="Location Guide for Sunday Programs"
-              description="Join us every Sunday for kirtan, class, and prasadam — here's exactly where to go."
+              title="Location Guide"
+              description="Sunday programs and daily weekday programs are held at two different addresses — here's exactly where to go."
             />
             <div className="mt-6 flex items-start gap-3">
               <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-gold border border-cream-deep">
                 <MapPinIcon className="w-5 h-5" />
               </span>
               <div>
+                <p className="text-xs font-semibold uppercase tracking-wide text-gold">
+                  Sunday Programs
+                </p>
                 <p className="font-semibold text-navy">{site.address}</p>
                 <p className="text-sm text-ink-soft mt-1">{site.hours}</p>
               </div>
@@ -87,9 +113,32 @@ export default function HomePage() {
                 View on Google Maps
               </a>
             </div>
+
+            <div className="mt-8 pt-6 border-t border-cream-deep flex items-start gap-3">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-gold border border-cream-deep">
+                <MapPinIcon className="w-5 h-5" />
+              </span>
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wide text-gold">
+                  Weekday Daily Programs
+                </p>
+                <p className="font-semibold text-navy">{dailyLocation.address}</p>
+                <p className="text-sm text-ink-soft mt-1">{dailyLocation.description}</p>
+              </div>
+            </div>
+            <div className="mt-4 flex flex-wrap gap-3">
+              <a
+                href={dailyLocation.directionsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-semibold text-white hover:bg-gold-light transition-colors shadow-sm"
+              >
+                Get Directions
+              </a>
+            </div>
+
             <p className="mt-4 text-xs text-ink-soft">
-              Weekday programs and the new temple are at different
-              addresses —{" "}
+              The new temple (under construction) is at a third address —{" "}
               <Link href="/contact" className="font-semibold text-gold hover:text-gold-light">
                 see all locations
               </Link>
