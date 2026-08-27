@@ -9,7 +9,7 @@ import {
   ScriptureIcon,
   TempleSilhouetteIcon,
 } from "@/components/devotional-art";
-import MediaGallery from "@/components/MediaGallery";
+import MediaGallery, { type GallerySection } from "@/components/MediaGallery";
 
 export const metadata: Metadata = {
   title: "Media",
@@ -26,13 +26,34 @@ const archive = [
   { title: "Temple Groundbreaking Ceremony", icon: TempleSilhouetteIcon },
 ] as const;
 
-const galleryPhotos = Array.from({ length: 20 }, (_, i) => {
-  const n = String(i + 1).padStart(2, "0");
-  return {
-    src: `/gallery/temple-life-${n}.jpg`,
-    alt: `Temple Life — Photo ${i + 1}`,
-  };
-});
+const gallerySections: GallerySection[] = [
+  {
+    key: "temple-life",
+    label: "Temple Life",
+    description:
+      "Sunday programs, kirtan, deity darshan, and everyday moments at the temple.",
+    photos: Array.from({ length: 15 }, (_, i) => {
+      const n = String(i + 1).padStart(2, "0");
+      return {
+        src: `/gallery/temple-life-${n}.jpg`,
+        alt: `Temple Life — Photo ${i + 1}`,
+      };
+    }),
+  },
+  {
+    key: "ratha-yatra",
+    label: "Ratha Yatra Festival",
+    description:
+      "Scenes from ISKCON Austin's Ratha Yatra chariot festival celebrations.",
+    photos: Array.from({ length: 18 }, (_, i) => {
+      const n = String(i + 1).padStart(2, "0");
+      return {
+        src: `/gallery/ratha-yatra-${n}.jpg`,
+        alt: `Ratha Yatra Festival — Photo ${i + 1}`,
+      };
+    }),
+  },
+];
 
 export default function MediaPage() {
   return (
@@ -94,10 +115,10 @@ export default function MediaPage() {
         <SectionHeading
           eyebrow="Temple Life"
           title="Photo Gallery"
-          description="Moments from temple life, festivals, and Sunday programs at ISKCON Austin."
+          description="Moments from temple life, festivals, and Sunday programs at ISKCON Austin, organized by occasion."
         />
         <div className="mt-10">
-          <MediaGallery photos={galleryPhotos} />
+          <MediaGallery sections={gallerySections} />
         </div>
       </section>
     </div>

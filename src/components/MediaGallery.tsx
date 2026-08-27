@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { CornerFrame } from "@/components/ornaments";
 
@@ -9,8 +9,38 @@ type GalleryPhoto = {
   alt: string;
 };
 
-export default function MediaGallery({ photos }: { photos: GalleryPhoto[] }) {
+export type GallerySection = {
+  key: string;
+  label: string;
+  description?: string;
+  photos: GalleryPhoto[];
+};
+
+export default function MediaGallery({
+  sections,
+}: {
+  sections: GallerySection[];
+}) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  // Flatten all sections into one ordered list so the lightbox can walk
+  // across section boundaries with next/prev.
+  const photos = useMemo(
+    () => sections.flatMap((s) => s.photos),
+    [sections]
+  );
+
+  // Map each section's local photo to its index within the flat `photos`
+  // array, so grid buttons can open the lightbox at the right spot.
+  const sectionOffsets = useMemo(() => {
+    const offsets: number[] = [];
+    let running = 0;
+    for (const s of sections) {
+      offsets.push(running);
+      running += s.photos.length;
+    }
+    return offsets;
+  }, [sections]);
 
   const close = useCallback(() => setOpenIndex(null), []);
   const next = useCallback(() => {
@@ -34,26 +64,43 @@ export default function MediaGallery({ photos }: { photos: GalleryPhoto[] }) {
   }, [openIndex, close, next, prev]);
 
   return (
-    <div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-        {photos.map((photo, i) => (
-          <button
-            key={photo.src}
-            onClick={() => setOpenIndex(i)}
-            className="group relative aspect-square w-full overflow-hidden rounded-2xl border border-cream-deep bg-cream shadow-sm"
-          >
-            <Image
-              src={photo.src}
-              alt={photo.alt}
-              fill
-              sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-navy-dark/0 group-hover:bg-navy-dark/10 transition-colors" />
-            <CornerFrame tone="white" size={14} inset={7} />
-          </button>
-        ))}
-      </div>
+    <div className="space-y-14">
+      {sections.map((section, sIdx) => (
+        <div key={section.key}>
+          <div className="flex items-baseline justify-between gap-4 flex-wrap">
+            <h3 className="font-display text-2xl font-semibold text-navy">
+              {section.label}
+            </h3>
+            <span className="text-xs font-semibold uppercase tracking-wide text-gold">
+              {section.photos.length} photos
+            </span>
+          </div>
+          {section.description && (
+            <p className="mt-1.5 text-sm text-ink-soft max-w-2xl">
+              {section.description}
+            </p>
+          )}
+          <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            {section.photos.map((photo, i) => (
+              <button
+                key={photo.src}
+                onClick={() => setOpenIndex(sectionOffsets[sIdx] + i)}
+                className="group relative aspect-square w-full overflow-hidden rounded-2xl border border-cream-deep bg-cream shadow-sm"
+              >
+                <Image
+                  src={photo.src}
+                  alt={photo.alt}
+                  fill
+                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-navy-dark/0 group-hover:bg-navy-dark/10 transition-colors" />
+                <CornerFrame tone="white" size={14} inset={7} />
+              </button>
+            ))}
+          </div>
+        </div>
+      ))}
 
       {openIndex !== null && photos[openIndex] && (
         <div
