@@ -1,17 +1,15 @@
 import type { Metadata } from "next";
-import { ArtPanel, Button, PageHero, SectionHeading } from "@/components/ui";
+import { Button, PageHero, SectionHeading } from "@/components/ui";
 import {
-  DiyaIcon,
   JapaMalaIcon,
   KirtanIcon,
   LotusBloomIcon,
   MandalaIcon,
   PeacockFeatherIcon,
-  PrasadamIcon,
   ScriptureIcon,
   TempleSilhouetteIcon,
-  TulsiIcon,
 } from "@/components/devotional-art";
+import MediaGallery from "@/components/MediaGallery";
 
 export const metadata: Metadata = {
   title: "Media",
@@ -28,21 +26,13 @@ const archive = [
   { title: "Temple Groundbreaking Ceremony", icon: TempleSilhouetteIcon },
 ] as const;
 
-const gallery = [
-  { icon: LotusBloomIcon, caption: "Deity Darshan", tone: "cream" as const },
-  { icon: DiyaIcon, caption: "Evening Aarti", tone: "navy" as const },
-  { icon: KirtanIcon, caption: "Sunday Kirtan", tone: "maroon" as const },
-  { icon: PrasadamIcon, caption: "Sunday Feast", tone: "cream" as const },
-  { icon: PeacockFeatherIcon, caption: "Janmashtami", tone: "navy" as const },
-  { icon: TulsiIcon, caption: "Tulsi Devi", tone: "cream" as const },
-  {
-    icon: TempleSilhouetteIcon,
-    caption: "Temple Grounds",
-    tone: "maroon" as const,
-    photo: "/temple-renderings/exterior-02-facade.jpg",
-  },
-  { icon: JapaMalaIcon, caption: "Japa & Meditation", tone: "navy" as const },
-];
+const galleryPhotos = Array.from({ length: 20 }, (_, i) => {
+  const n = String(i + 1).padStart(2, "0");
+  return {
+    src: `/gallery/temple-life-${n}.jpg`,
+    alt: `Temple Life — Photo ${i + 1}`,
+  };
+});
 
 export default function MediaPage() {
   return (
@@ -104,20 +94,10 @@ export default function MediaPage() {
         <SectionHeading
           eyebrow="Temple Life"
           title="Photo Gallery"
-          description="A few moments from temple life — real event photography will join this gallery as it's collected."
+          description="Moments from temple life, festivals, and Sunday programs at ISKCON Austin."
         />
-        <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4">
-          {gallery.map((g, i) => (
-            <ArtPanel
-              key={i}
-              icon={g.icon}
-              caption={g.caption}
-              tone={g.tone}
-              ratio="aspect-square"
-              iconClassName="w-14 h-14"
-              photo={"photo" in g ? g.photo : undefined}
-            />
-          ))}
+        <div className="mt-10">
+          <MediaGallery photos={galleryPhotos} />
         </div>
       </section>
     </div>
