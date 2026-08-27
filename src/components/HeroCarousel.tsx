@@ -50,8 +50,6 @@ export default function HeroCarousel() {
   return (
     <section
       className="relative w-full min-h-[600px] sm:min-h-[680px] lg:min-h-[740px] overflow-hidden bg-navy"
-      onMouseEnter={stop}
-      onMouseLeave={start}
       aria-roledescription="carousel"
     >
       {heroSlides.map((slide, i) => {
