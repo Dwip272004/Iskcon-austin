@@ -18,12 +18,20 @@ const FALLBACK_GRADIENTS = [
   "from-navy via-navy-dark to-[#0c1a26]",
 ];
 
-const AUTOPLAY_MS = 7000;
+const AUTOPLAY_MS = 3000;
+// Minimum horizontal distance (px) a touch must travel to count as a swipe
+// rather than a tap/hold.
+const SWIPE_THRESHOLD = 40;
 
 export default function HeroCarousel() {
   const [active, setActive] = useState(0);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const count = heroSlides.length;
+
+  // Touch tracking for swipe-to-navigate / hold-to-pause on mobile.
+  const touchStartX = useRef<number | null>(null);
+  const touchStartY = useRef<number | null>(null);
+  const touchCurrentX = useRef<number | null>(null);
 
   const stop = useCallback(() => {
     if (timerRef.current) clearInterval(timerRef.current);
@@ -47,10 +55,51 @@ export default function HeroCarousel() {
     start();
   };
 
+  // Touch handlers: holding a finger down pauses autoplay on the current
+  // slide (so it can be read); a horizontal swipe past the threshold moves
+  // to the next/previous slide; a plain tap/hold-and-release with little
+  // movement just resumes the 3s autoplay from where it is.
+  const handleTouchStart = (e: React.TouchEvent) => {
+    stop();
+    touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+    touchCurrentX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchCurrentX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    const startX = touchStartX.current;
+    const currentX = touchCurrentX.current;
+    touchStartX.current = null;
+    touchStartY.current = null;
+    touchCurrentX.current = null;
+
+    if (startX === null || currentX === null) {
+      start();
+      return;
+    }
+
+    const deltaX = currentX - startX;
+    if (Math.abs(deltaX) >= SWIPE_THRESHOLD) {
+      // Swiped left -> next slide; swiped right -> previous slide.
+      goTo(deltaX < 0 ? active + 1 : active - 1);
+    } else {
+      // Tap or hold with no meaningful movement — just resume autoplay.
+      start();
+    }
+  };
+
   return (
     <section
-      className="relative w-full min-h-[600px] sm:min-h-[680px] lg:min-h-[740px] overflow-hidden bg-navy"
+      className="relative w-full min-h-[600px] sm:min-h-[680px] lg:min-h-[740px] overflow-hidden bg-navy touch-pan-y"
       aria-roledescription="carousel"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+      onTouchCancel={handleTouchEnd}
     >
       {heroSlides.map((slide, i) => {
         const Icon = ICONS[i % ICONS.length];
