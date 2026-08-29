@@ -142,8 +142,7 @@ export const heroSlides = [
     eyebrow: "Every Sunday",
     title: "Join Us for the Sunday Program",
     body: "Kirtan, scripture study, and a free feast — every Sunday, open to everyone.",
-    primaryCta: { label: "Plan Your Visit", href: "/visit" },
-    secondaryCta: { label: "Watch Online", href: "/media" },
+    primaryCta: { label: "Plan Your Visit", href: "/locations/sunday" },
     schedule: [
       { time: "11:00 – 11:30 AM", title: "Ecstatic Kirtan" },
       { time: "11:40 AM – 12:30 PM", title: "Bhagavad-gita Study & Q&A" },
@@ -156,8 +155,7 @@ export const heroSlides = [
     eyebrow: "Every Day",
     title: "Temple Life, All Week Long",
     body: "Morning and evening aarti, daily scripture class, and Sunday celebrations — there's always a way to connect.",
-    primaryCta: { label: "View Full Schedule", href: "/visit" },
-    secondaryCta: { label: "See Events", href: "/get-involved#events" },
+    primaryCta: { label: "View Daily Programs", href: "/locations/daily" },
     schedule: [
       { time: "4:30 AM", title: "Mangala Aarti & Tulasi Worship — Daily" },
       { time: "7:15 AM", title: "Srimad Bhagavatam Class — Daily" },
@@ -170,8 +168,7 @@ export const heroSlides = [
     eyebrow: "A Gift for Generations",
     title: "A Grand New Temple Is Coming to Austin",
     body: "Help us build a permanent home for Krishna consciousness in Central Texas — a worship hall, residences, and gardens for generations of devotees to come.",
-    primaryCta: { label: "Donate to the New Temple", href: "/donate" },
-    secondaryCta: { label: "Take the Virtual Tour", href: "/virtual-tour" },
+    primaryCta: { label: "Explore the New Temple", href: "/locations/new-temple" },
     stat: givingProgressLabel(),
   },
 ] as const;

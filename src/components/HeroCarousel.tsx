@@ -180,12 +180,6 @@ export default function HeroCarousel() {
                   >
                     {slide.primaryCta.label}
                   </Link>
-                  <Link
-                    href={slide.secondaryCta.href}
-                    className="inline-flex items-center justify-center rounded-full bg-white/10 border border-white/40 px-6 py-3 text-sm font-semibold text-white hover:bg-white/20 transition-colors"
-                  >
-                    {slide.secondaryCta.label}
-                  </Link>
                 </div>
               </div>
             </div>
