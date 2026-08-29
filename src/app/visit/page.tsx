@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArtPanel, Card, PageHero, SectionHeading } from "@/components/ui";
 import { MapPinIcon, NamasteIcon } from "@/components/devotional-art";
 import { faqs, locations, weeklySchedule } from "@/lib/data";
+import GalleryLink from "@/components/GalleryLink";
 
 export const metadata: Metadata = {
   title: "Visit Us",
@@ -102,6 +103,19 @@ export default function VisitPage() {
             title="Directions & Parking"
             description="ISKCON Austin operates across three locations — find the right one below and tap Get Directions."
           />
+          <div className="mt-8 rounded-2xl bg-white border border-cream-deep p-6 grid sm:grid-cols-2 gap-6 text-sm text-ink-soft leading-relaxed">
+            <p>
+              <span className="font-semibold text-navy">Parking: </span>
+              Free on-site parking is available at each location. TODO:
+              confirm parking details once the new temple location is
+              finalized.
+            </p>
+            <p>
+              <span className="font-semibold text-navy">Accessibility: </span>
+              TODO: confirm wheelchair access, ramps, and accessible seating
+              details.
+            </p>
+          </div>
           <div className="mt-10 grid sm:grid-cols-3 gap-6">
             {locations.map((l) => (
               <Card key={l.key} className="p-6">
@@ -125,19 +139,6 @@ export default function VisitPage() {
                 </a>
               </Card>
             ))}
-          </div>
-          <div className="mt-10 grid sm:grid-cols-2 gap-6 text-sm text-ink-soft leading-relaxed">
-            <p>
-              <span className="font-semibold text-navy">Parking: </span>
-              Free on-site parking is available at each location. TODO:
-              confirm parking details once the new temple location is
-              finalized.
-            </p>
-            <p>
-              <span className="font-semibold text-navy">Accessibility: </span>
-              TODO: confirm wheelchair access, ramps, and accessible seating
-              details.
-            </p>
           </div>
         </div>
       </section>
@@ -172,6 +173,10 @@ export default function VisitPage() {
           </div>
         </div>
       </section>
+
+      <div className="py-16">
+        <GalleryLink />
+      </div>
     </div>
   );
 }

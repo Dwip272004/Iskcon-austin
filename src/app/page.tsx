@@ -6,10 +6,10 @@ import {
   Eyebrow,
   SectionHeading,
 } from "@/components/ui";
-import { MapPinIcon } from "@/components/devotional-art";
 import { CornerFrame, OrnamentDivider } from "@/components/ornaments";
 import HeroCarousel from "@/components/HeroCarousel";
-import { events, givingFunds, locations, site, weeklySchedule } from "@/lib/data";
+import LocationCards from "@/components/LocationCards";
+import { events, givingFunds, locations, weeklySchedule } from "@/lib/data";
 
 export default function HomePage() {
   const sundayItems = weeklySchedule.filter((s) => s.day === "Sunday");
@@ -74,88 +74,24 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Location guide for Sunday programs */}
+      {/* Location guide — 3 current locations, each expandable for details */}
       <section className="bg-cream">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-24 grid lg:grid-cols-2 gap-12 items-center">
-          <div>
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-24">
+          <div className="flex flex-wrap items-end justify-between gap-4">
             <SectionHeading
               eyebrow="Find Us"
-              title="Location Guide"
-              description="Sunday programs and daily weekday programs are held at two different addresses — here's exactly where to go."
+              title="Our Locations"
+              description="ISKCON Austin currently operates across three locations — tap Get Details on any card for its schedule and directions."
             />
-            <div className="mt-6 flex items-start gap-3">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-gold border border-cream-deep">
-                <MapPinIcon className="w-5 h-5" />
-              </span>
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-wide text-gold">
-                  Sunday Programs
-                </p>
-                <p className="font-semibold text-navy">{site.address}</p>
-                <p className="text-sm text-ink-soft mt-1">{site.hours}</p>
-              </div>
-            </div>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <a
-                href={site.map.directionsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-semibold text-white hover:bg-gold-light transition-colors shadow-sm"
-              >
-                Get Directions
-              </a>
-              <a
-                href={site.map.placeUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-navy px-6 py-3 text-sm font-semibold text-white hover:bg-navy-dark transition-colors shadow-sm"
-              >
-                View on Google Maps
-              </a>
-            </div>
-
-            <div className="mt-8 pt-6 border-t border-cream-deep flex items-start gap-3">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-gold border border-cream-deep">
-                <MapPinIcon className="w-5 h-5" />
-              </span>
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-wide text-gold">
-                  Weekday Daily Programs
-                </p>
-                <p className="font-semibold text-navy">{dailyLocation.address}</p>
-                <p className="text-sm text-ink-soft mt-1">{dailyLocation.description}</p>
-              </div>
-            </div>
-            <div className="mt-4 flex flex-wrap gap-3">
-              <a
-                href={dailyLocation.directionsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-semibold text-white hover:bg-gold-light transition-colors shadow-sm"
-              >
-                Get Directions
-              </a>
-            </div>
-
-            <p className="mt-4 text-xs text-ink-soft">
-              The new temple (under construction) is at a third address —{" "}
-              <Link href="/contact" className="font-semibold text-gold hover:text-gold-light">
-                see all locations
-              </Link>
-              .
-            </p>
+            <Link
+              href="/visit"
+              className="text-sm font-semibold text-gold hover:text-gold-light whitespace-nowrap"
+            >
+              View Full Schedule →
+            </Link>
           </div>
-          <div className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden border border-cream-deep shadow-sm">
-            <iframe
-              src={site.map.embedUrl}
-              className="absolute inset-0 h-full w-full"
-              style={{ border: 0 }}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              allowFullScreen
-              title="ISKCON Austin location map"
-            />
-            <CornerFrame tone="gold" size={20} inset={8} />
+          <div className="mt-10">
+            <LocationCards />
           </div>
         </div>
       </section>

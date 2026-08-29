@@ -11,6 +11,7 @@ import {
   TulsiIcon,
 } from "@/components/devotional-art";
 import { kcAtHome, site } from "@/lib/data";
+import GalleryLink from "@/components/GalleryLink";
 
 const PRACTICE_ICONS = [
   JapaMalaIcon,
@@ -237,6 +238,10 @@ export default function KCAtHomePage() {
           </p>
         </div>
       </section>
+
+      <div className="py-16">
+        <GalleryLink />
+      </div>
     </div>
   );
 }

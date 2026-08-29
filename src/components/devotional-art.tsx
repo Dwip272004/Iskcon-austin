@@ -206,6 +206,22 @@ export function MapPinIcon({ className = "" }: IconProps) {
   );
 }
 
+export function CameraIcon({ className = "" }: IconProps) {
+  return (
+    <svg viewBox="0 0 100 100" className={className} fill="none">
+      <path
+        d="M20 38 C20 34 23 31 27 31 H35 L40 22 H60 L65 31 H73 C77 31 80 34 80 38 V70 C80 74 77 77 73 77 H27 C23 77 20 74 20 70 Z"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <circle cx="50" cy="55" r="14" stroke="currentColor" strokeWidth="2" />
+      <circle cx="50" cy="55" r="5" fill="currentColor" />
+      <circle cx="69" cy="41" r="2.2" fill="currentColor" />
+    </svg>
+  );
+}
+
 export function YouthIcon({ className = "" }: IconProps) {
   return (
     <svg viewBox="0 0 100 100" className={className} fill="none">

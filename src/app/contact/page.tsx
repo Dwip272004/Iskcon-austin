@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Card, PageHero, SectionHeading } from "@/components/ui";
 import { MapPinIcon } from "@/components/devotional-art";
 import { locations, site } from "@/lib/data";
+import GalleryLink from "@/components/GalleryLink";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -133,6 +134,10 @@ export default function ContactPage() {
           </form>
         </div>
       </section>
+
+      <div className="pb-16">
+        <GalleryLink />
+      </div>
     </div>
   );
 }

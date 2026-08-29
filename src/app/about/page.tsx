@@ -8,6 +8,7 @@ import {
   TempleSilhouetteIcon,
 } from "@/components/devotional-art";
 import { coreBeliefs, iskconPhilosophy, iskconStats } from "@/lib/data";
+import GalleryLink from "@/components/GalleryLink";
 
 const BELIEF_ICONS = [PeacockFeatherIcon, ScriptureIcon, JapaMalaIcon, MandalaIcon];
 
@@ -183,6 +184,10 @@ export default function AboutPage() {
           photo="/temple-renderings/exterior-05-corner-view.jpg"
         />
       </section>
+
+      <div className="pb-16">
+        <GalleryLink />
+      </div>
     </div>
   );
 }

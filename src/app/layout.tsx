@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FestivalSplash from "@/components/FestivalSplash";
+import MobileDonateButton from "@/components/MobileDonateButton";
 
 export const metadata: Metadata = {
   title: {
@@ -31,6 +32,7 @@ export default function RootLayout({
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
+        <MobileDonateButton />
       </body>
     </html>
   );

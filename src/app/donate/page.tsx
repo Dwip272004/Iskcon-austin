@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Card, PageHero, SectionHeading } from "@/components/ui";
 import GivingForm from "@/components/GivingForm";
 import { donationContact, donationMethods, donorRecognitionTiers } from "@/lib/data";
+import GalleryLink from "@/components/GalleryLink";
 
 export const metadata: Metadata = {
   title: "Donate",
@@ -131,6 +132,10 @@ export default function DonatePage() {
           ))}
         </div>
       </section>
+
+      <div className="pb-16">
+        <GalleryLink />
+      </div>
     </div>
   );
 }

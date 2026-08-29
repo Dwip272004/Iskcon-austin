@@ -111,7 +111,7 @@ export default function MediaPage() {
       </section>
 
       {/* Gallery */}
-      <section className="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-20">
+      <section id="gallery" className="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-20 scroll-mt-24">
         <SectionHeading
           eyebrow="Temple Life"
           title="Photo Gallery"
