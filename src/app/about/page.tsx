@@ -53,6 +53,7 @@ export default function AboutPage() {
           icon={TempleSilhouetteIcon}
           caption="Krishna, the Supreme"
           tone="cream"
+          ratio="aspect-[3/4]"
           photo="/deities/krishna-supreme.jpg"
         />
       </section>
