@@ -93,6 +93,7 @@ export default function AboutPage() {
           icon={ScriptureIcon}
           caption="Founder-Ācārya Śrīla Prabhupāda"
           tone="cream"
+          ratio="aspect-[3/4]"
           photo="/people/srila-prabhupada.jpg"
         />
         <div>
