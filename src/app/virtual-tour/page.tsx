@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { PageHero, SectionHeading, Button, Eyebrow } from "@/components/ui";
 import { OrnamentDivider } from "@/components/ornaments";
 import VirtualTourGallery from "@/components/VirtualTourGallery";
-import { givingFunds } from "@/lib/data";
+import { campaignPercent, givingFunds } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Virtual Tour — The New Temple",
@@ -51,10 +51,13 @@ export default function VirtualTourPage() {
           <div className="mt-6 max-w-sm mx-auto">
             <div className="flex items-center justify-between text-sm font-semibold mb-2">
               <span>{givingFunds[0].stat}</span>
-              <span>60%</span>
+              <span>{campaignPercent()}%</span>
             </div>
             <div className="h-2.5 rounded-full bg-white/15 overflow-hidden">
-              <div className="h-full w-[60%] rounded-full bg-gradient-to-r from-gold to-gold-light" />
+              <div
+                className="h-full rounded-full bg-gradient-to-r from-gold to-gold-light"
+                style={{ width: `${campaignPercent()}%` }}
+              />
             </div>
           </div>
           <div className="mt-8 flex flex-wrap justify-center gap-3">

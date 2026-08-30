@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Button, SectionHeading } from "@/components/ui";
 import { MapPinIcon } from "@/components/devotional-art";
 import { CornerFrame } from "@/components/ornaments";
-import { givingFunds, locations } from "@/lib/data";
+import { campaignPercent, givingFunds, locations } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "New Temple",
@@ -90,13 +90,36 @@ export default function NewTempleLocationPage() {
             <div className="mt-6">
               <div className="flex items-center justify-between text-sm font-semibold text-navy mb-2">
                 <span>{campaign.stat}</span>
-                <span>60%</span>
+                <span>{campaignPercent()}%</span>
               </div>
               <div className="h-3 rounded-full bg-cream overflow-hidden">
-                <div className="h-full w-[60%] rounded-full bg-gradient-to-r from-gold to-gold-light" />
+                <div
+                  className="h-full rounded-full bg-gradient-to-r from-gold to-gold-light"
+                  style={{ width: `${campaignPercent()}%` }}
+                />
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* The property — real aerial photo of the site */}
+      <section className="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-20">
+        <SectionHeading
+          eyebrow="The Land"
+          title="The Property"
+          description="An aerial view of the site at 1311 Collinwood W Dr — the future home of ISKCON Austin's permanent temple."
+        />
+        <div className="mt-10 relative aspect-[16/9] w-full overflow-hidden rounded-2xl border border-cream-deep shadow-sm">
+          <Image
+            src="/new-temple/property-aerial.jpg"
+            alt="Aerial view of the new temple property in Austin, Texas"
+            fill
+            sizes="100vw"
+            className="object-cover"
+            priority
+          />
+          <CornerFrame tone="gold" size={20} inset={10} />
         </div>
       </section>
 

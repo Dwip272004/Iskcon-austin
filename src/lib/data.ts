@@ -173,8 +173,26 @@ export const heroSlides = [
   },
 ] as const;
 
+// Single source of truth for the New Temple capital campaign progress —
+// change these two numbers and the label/percentage everywhere on the site
+// (hero, homepage, About, Virtual Tour, New Temple location page) update
+// together automatically.
+export const campaignProgress = {
+  raised: 1_250_000, // $1.25M — confirmed by Sravanananda
+  goal: 5_000_000, // $5M
+};
+
+export function campaignPercent() {
+  return Math.round((campaignProgress.raised / campaignProgress.goal) * 100);
+}
+
+function formatMoney(n: number) {
+  if (n % 1_000_000 === 0) return `$${n / 1_000_000}M`;
+  return `$${(n / 1_000_000).toFixed(2).replace(/0$/, "")}M`;
+}
+
 function givingProgressLabel() {
-  return "$3M raised of $5M goal";
+  return `${formatMoney(campaignProgress.raised)} raised of ${formatMoney(campaignProgress.goal)} goal`;
 }
 
 // Virtual tour — architectural renderings of the new temple, grouped by
@@ -381,7 +399,7 @@ export const givingFunds = [
     title: "New Temple Capital Campaign",
     description:
       "Help build ISKCON Austin's permanent home — a 300-person worship hall, residences, and gardens for generations to come.",
-    stat: "$3M raised of $5M goal", // TODO: confirm live figure or wire to a live source
+    stat: givingProgressLabel(), // single source of truth: campaignProgress above
   },
   {
     key: "operations",

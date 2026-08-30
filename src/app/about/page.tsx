@@ -62,7 +62,7 @@ export default function AboutPage() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-20">
           <SectionHeading
             eyebrow="Our Philosophy"
-            title="What We Believe"
+            title="Transcendental Truths"
             description="A few core teachings at the heart of Krishna consciousness."
           />
           <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -92,7 +92,7 @@ export default function AboutPage() {
           icon={ScriptureIcon}
           caption="Founder-Ācārya Śrīla Prabhupāda"
           tone="cream"
-          photo="/temple-renderings/interior-02-great-hall.jpg"
+          photo="/temple-renderings/interior-03-shrine-alcove.jpg"
         />
         <div>
           <SectionHeading eyebrow="Our Founder-Acharya" title="Srila Prabhupada" />

@@ -9,7 +9,7 @@ import {
 import { CornerFrame, OrnamentDivider } from "@/components/ornaments";
 import HeroCarousel from "@/components/HeroCarousel";
 import LocationCards from "@/components/LocationCards";
-import { events, givingFunds, locations, weeklySchedule } from "@/lib/data";
+import { campaignPercent, events, givingFunds, locations, weeklySchedule } from "@/lib/data";
 
 export default function HomePage() {
   const sundayItems = weeklySchedule.filter((s) => s.day === "Sunday");
@@ -121,10 +121,13 @@ export default function HomePage() {
             <div className="mt-6">
               <div className="flex items-center justify-between text-sm font-semibold text-navy mb-2">
                 <span>{givingFunds[0].stat}</span>
-                <span>60%</span>
+                <span>{campaignPercent()}%</span>
               </div>
               <div className="h-3 rounded-full bg-white overflow-hidden">
-                <div className="h-full w-[60%] rounded-full bg-gradient-to-r from-gold to-gold-light" />
+                <div
+                  className="h-full rounded-full bg-gradient-to-r from-gold to-gold-light"
+                  style={{ width: `${campaignPercent()}%` }}
+                />
               </div>
             </div>
             <div className="mt-6 flex flex-wrap gap-3">

@@ -46,6 +46,14 @@
   --font-sans: "Inter var", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
+/* Bump the root font size so every rem-based Tailwind text utility across
+   the site (text-sm, text-base, text-lg, etc.) scales up ~12.5% for
+   readability, while still respecting a visitor's own browser zoom/text
+   size settings (a percentage, not a fixed px, on purpose). */
+html {
+  font-size: 112.5%;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);

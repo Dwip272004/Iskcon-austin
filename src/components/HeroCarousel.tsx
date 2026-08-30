@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { heroSlides } from "@/lib/data";
+import { campaignPercent, heroSlides } from "@/lib/data";
 import { OrnamentDivider } from "@/components/ornaments";
 import {
   DiyaIcon,
@@ -147,10 +147,13 @@ export default function HeroCarousel() {
                   <div className="mt-7 max-w-sm mx-auto">
                     <div className="flex items-center justify-between text-sm font-semibold mb-2">
                       <span>{slide.stat}</span>
-                      <span>60%</span>
+                      <span>{campaignPercent()}%</span>
                     </div>
                     <div className="h-2.5 rounded-full bg-white/15 overflow-hidden">
-                      <div className="h-full w-[60%] rounded-full bg-gradient-to-r from-gold to-gold-light" />
+                      <div
+                        className="h-full rounded-full bg-gradient-to-r from-gold to-gold-light"
+                        style={{ width: `${campaignPercent()}%` }}
+                      />
                     </div>
                   </div>
                 )}

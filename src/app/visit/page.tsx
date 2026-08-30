@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArtPanel, Card, PageHero, SectionHeading } from "@/components/ui";
 import { MapPinIcon, NamasteIcon } from "@/components/devotional-art";
-import { faqs, locations, weeklySchedule } from "@/lib/data";
+import { faqs, locations, site, weeklySchedule } from "@/lib/data";
 import GalleryLink from "@/components/GalleryLink";
 
 export const metadata: Metadata = {
@@ -91,6 +91,18 @@ export default function VisitPage() {
                 </p>
               </Card>
             ))}
+          </div>
+
+          <div className="mt-10 relative aspect-[16/7] w-full overflow-hidden rounded-2xl border border-cream-deep shadow-sm">
+            <iframe
+              src={site.map.embedUrl}
+              className="absolute inset-0 h-full w-full"
+              style={{ border: 0 }}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+              title="Google Map — ISKCON Austin temple programs location"
+            />
           </div>
         </div>
       </section>
