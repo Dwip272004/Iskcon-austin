@@ -92,7 +92,7 @@ export default function AboutPage() {
           icon={ScriptureIcon}
           caption="Founder-Ācārya Śrīla Prabhupāda"
           tone="cream"
-          photo="/temple-renderings/interior-03-shrine-alcove.jpg"
+          photo="/people/srila-prabhupada.jpg"
         />
         <div>
           <SectionHeading eyebrow="Our Founder-Acharya" title="Srila Prabhupada" />

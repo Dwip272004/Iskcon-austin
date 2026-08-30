@@ -256,7 +256,7 @@ export const virtualTourImages = [
     key: "interior-03",
     group: "Interior" as const,
     src: "/temple-renderings/interior-03-shrine-alcove.jpg",
-    title: "Srila Prabhupada",
+    title: "Shrine Alcove",
     caption: "A secondary shrine alcove for personal darshan and reflection.",
   },
 ] as const;
