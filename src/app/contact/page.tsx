@@ -14,11 +14,11 @@ const details = [
   { label: "Phone", value: site.phone, href: `tel:${site.phone}` },
   { label: "Email", value: site.email, href: `mailto:${site.email}` },
   { label: "Sunday Hours", value: site.hours },
-  {
+  ...site.contactPeople.map((p) => ({
     label: "Temple Contact",
-    value: `${site.contactPerson.name} — ${site.contactPerson.phone}`,
-    href: `tel:${site.contactPerson.phone}`,
-  },
+    value: `${p.name} — ${p.phone}`,
+    href: `tel:${p.phone}`,
+  })),
 ];
 
 export default function ContactPage() {
@@ -70,7 +70,7 @@ export default function ContactPage() {
           <SectionHeading eyebrow="Reach the Temple" title="Contact Details" />
           <dl className="mt-8 space-y-6">
             {details.map((d) => (
-              <div key={d.label}>
+              <div key={d.label + d.value}>
                 <dt className="text-xs font-semibold uppercase tracking-wide text-gold">
                   {d.label}
                 </dt>

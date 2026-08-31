@@ -80,11 +80,13 @@ export default function Footer() {
                 {site.email}
               </a>
             </li>
-            <li>
-              <a href={`tel:${site.contactPerson.phone}`} className="hover:text-white">
-                {site.contactPerson.name}: {site.contactPerson.phone}
-              </a>
-            </li>
+            {site.contactPeople.map((p) => (
+              <li key={p.name}>
+                <a href={`tel:${p.phone}`} className="hover:text-white">
+                  {p.name}: {p.phone}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
 

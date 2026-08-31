@@ -73,9 +73,11 @@ export default function VisitPage() {
       {/* Full weekly schedule */}
       <section className="bg-cream">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-20">
-          <SectionHeading eyebrow="Weekly Rhythm" title="Full Temple Schedule" />
+          <SectionHeading eyebrow="Weekly Rhythm" title="Sunday Schedule" />
           <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {weeklySchedule.map((item) => (
+            {weeklySchedule
+              .filter((item) => item.day === "Sunday")
+              .map((item) => (
               <Card key={item.title + item.time} className="p-6">
                 <span className="inline-block rounded-full bg-cream px-3 py-1 text-xs font-semibold uppercase tracking-wide text-navy">
                   {item.day}

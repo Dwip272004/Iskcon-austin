@@ -30,11 +30,6 @@ export default function VirtualTourPage() {
         <div className="mt-12">
           <VirtualTourGallery />
         </div>
-        <div className="mt-10 text-center">
-          <Button href="/documents/austin-iskcon-temple-renderings.pdf" variant="secondary">
-            Download Full Rendering Set (PDF)
-          </Button>
-        </div>
       </section>
 
       {/* Campaign callout */}

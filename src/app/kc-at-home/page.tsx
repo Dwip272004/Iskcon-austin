@@ -230,9 +230,14 @@ export default function KCAtHomePage() {
           </div>
           <p className="mt-8 text-sm text-white/70">
             Have questions about starting a home practice? Reach out to{" "}
-            <a href={`tel:${site.contactPerson.phone}`} className="font-semibold text-gold-light hover:underline">
-              {site.contactPerson.name}
-            </a>{" "}
+            {site.contactPeople.map((p, i) => (
+              <span key={p.name}>
+                <a href={`tel:${p.phone}`} className="font-semibold text-gold-light hover:underline">
+                  {p.name}
+                </a>
+                {i < site.contactPeople.length - 1 ? " or " : ""}
+              </span>
+            ))}
             — or find books and altar supplies at{" "}
             <span className="font-semibold">store.krishna.com</span>.
           </p>

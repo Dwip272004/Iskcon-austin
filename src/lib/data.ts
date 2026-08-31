@@ -18,11 +18,11 @@ export const site = {
     instagram: "https://instagram.com/iskconaustin",
     youtube: "https://youtube.com/@iskconaustin",
   },
-  // Direct temple contact.
-  contactPerson: {
-    name: "Abhay Charan Das",
-    phone: "+1-512-762-6644",
-  },
+  // Direct temple contacts.
+  contactPeople: [
+    { name: "Caitanyavani Das", phone: "+1-512-689-6971" },
+    { name: "Sravanananda Das", phone: "+1-408-594-8864" },
+  ],
   map: {
     // Google Business Profile listing (cid link) provided by the client.
     placeUrl:
