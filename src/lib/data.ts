@@ -151,15 +151,6 @@ export const heroSlides = [
     ],
   },
   {
-    key: "temple",
-    image: "/temple-renderings/exterior-04-front-entrance-pool.jpg",
-    eyebrow: "A Gift for Generations",
-    title: "A Grand New Temple Is Coming to Austin",
-    body: "Help us build a permanent home for Krishna consciousness in Central Texas — a worship hall, residences, and gardens for generations of devotees to come.",
-    primaryCta: { label: "Explore the New Temple", href: "/locations/new-temple" },
-    stat: givingProgressLabel(),
-  },
-  {
     key: "govardhan",
     image: "/hero/govardhan-puja.jpg",
     eyebrow: "Annual Festival",
@@ -174,6 +165,15 @@ export const heroSlides = [
     title: "Kirtan",
     body: "Congregational chanting of the Hare Krishna maha-mantra — music, dancing, and joy open to everyone, no experience needed.",
     primaryCta: { label: "See Festival Calendar", href: "/get-involved#events" },
+  },
+  {
+    key: "temple",
+    image: "/temple-renderings/exterior-04-front-entrance-pool.jpg",
+    eyebrow: "A Gift for Generations",
+    title: "A Grand New Temple Is Coming to Austin",
+    body: "Help us build a permanent home for Krishna consciousness in Central Texas — a worship hall, residences, and gardens for generations of devotees to come.",
+    primaryCta: { label: "Explore the New Temple", href: "/locations/new-temple" },
+    stat: givingProgressLabel(),
   },
 ] as const;
 
