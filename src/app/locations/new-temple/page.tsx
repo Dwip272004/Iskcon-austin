@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Button, SectionHeading } from "@/components/ui";
 import { MapPinIcon } from "@/components/devotional-art";
 import { CornerFrame } from "@/components/ornaments";
-import { campaignPercent, givingFunds, locations } from "@/lib/data";
+import { campaignPercent, constructionUpdates, givingFunds, locations } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "New Temple",
@@ -120,6 +120,59 @@ export default function NewTempleLocationPage() {
             priority
           />
           <CornerFrame tone="gold" size={20} inset={10} />
+        </div>
+      </section>
+
+      {/* Construction progress & temple features */}
+      <section className="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-20">
+        <SectionHeading
+          eyebrow="Where Things Stand"
+          title="Construction Progress"
+          description={`${constructionUpdates.templeName} — the latest on where the project stands, and what to expect once ground is broken.`}
+        />
+        <div className="mt-10 grid lg:grid-cols-2 gap-12">
+          <div>
+            <h3 className="font-display text-lg font-semibold text-navy">Construction Updates</h3>
+            <ol className="mt-5 space-y-5">
+              {constructionUpdates.milestones.map((m, i) => (
+                <li key={m.title} className="flex gap-4">
+                  <span
+                    className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold ${
+                      m.done
+                        ? "bg-gold text-white"
+                        : "bg-cream text-gold border border-gold/50"
+                    }`}
+                  >
+                    {m.done ? "✓" : i + 1}
+                  </span>
+                  <div>
+                    <p className="font-semibold text-navy leading-snug">{m.title}</p>
+                    {m.detail && (
+                      <p className="text-sm text-ink-soft mt-0.5">{m.detail}</p>
+                    )}
+                    <p className="text-xs font-semibold uppercase tracking-wide text-gold mt-1">
+                      {m.date}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+            <p className="mt-6 text-sm text-ink-soft leading-relaxed rounded-xl bg-cream border border-cream-deep px-4 py-3">
+              Estimated time needed to construct once building begins:{" "}
+              <span className="font-semibold text-navy">{constructionUpdates.constructionDuration}</span>.
+            </p>
+          </div>
+          <div>
+            <h3 className="font-display text-lg font-semibold text-navy">Temple Features</h3>
+            <ul className="mt-5 space-y-4">
+              {constructionUpdates.features.map((f) => (
+                <li key={f} className="flex gap-3 text-sm text-ink-soft leading-relaxed">
+                  <span className="text-gold font-bold">•</span>
+                  {f}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 

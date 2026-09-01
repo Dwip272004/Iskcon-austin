@@ -9,6 +9,7 @@ import {
 import { CornerFrame, OrnamentDivider } from "@/components/ornaments";
 import HeroCarousel from "@/components/HeroCarousel";
 import LocationCards from "@/components/LocationCards";
+import JoinCourseBanner from "@/components/JoinCourseBanner";
 import { campaignPercent, events, givingFunds, locations, weeklySchedule } from "@/lib/data";
 
 export default function HomePage() {
@@ -205,6 +206,8 @@ export default function HomePage() {
           </p>
         </div>
       </section>
+
+      <JoinCourseBanner />
     </div>
   );
 }

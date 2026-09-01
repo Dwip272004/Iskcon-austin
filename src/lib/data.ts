@@ -20,6 +20,7 @@ export const site = {
   },
   // Direct temple contacts.
   contactPeople: [
+    { name: "Abhay Charan Das", phone: "+1-512-762-6644" },
     { name: "Caitanyavani Das", phone: "+1-512-689-6971" },
     { name: "Sravanananda Das", phone: "+1-408-594-8864" },
   ],
@@ -138,7 +139,7 @@ export const weeklySchedule = [
 export const heroSlides = [
   {
     key: "sunday",
-    image: "/temple-renderings/interior-02-great-hall.jpg",
+    image: "/hero/sunday-program.jpg",
     eyebrow: "Every Sunday",
     title: "Join Us for the Sunday Program",
     body: "Kirtan, scripture study, and a free feast — every Sunday, open to everyone.",
@@ -150,19 +151,6 @@ export const heroSlides = [
     ],
   },
   {
-    key: "weekly",
-    image: "/temple-renderings/interior-01-altar-hall.jpg",
-    eyebrow: "Every Day",
-    title: "Temple Life, All Week Long",
-    body: "Morning and evening aarti, daily scripture class, and Sunday celebrations — there's always a way to connect.",
-    primaryCta: { label: "View Daily Programs", href: "/locations/daily" },
-    schedule: [
-      { time: "4:30 AM", title: "Mangala Aarti & Tulasi Worship — Daily" },
-      { time: "7:15 AM", title: "Srimad Bhagavatam Class — Daily" },
-      { time: "6:30 PM", title: "Gaura Aarti — Daily" },
-    ],
-  },
-  {
     key: "temple",
     image: "/temple-renderings/exterior-04-front-entrance-pool.jpg",
     eyebrow: "A Gift for Generations",
@@ -171,7 +159,61 @@ export const heroSlides = [
     primaryCta: { label: "Explore the New Temple", href: "/locations/new-temple" },
     stat: givingProgressLabel(),
   },
+  {
+    key: "govardhan",
+    image: "/hero/govardhan-puja.jpg",
+    eyebrow: "Annual Festival",
+    title: "Govardhan Puja",
+    body: "An Annakuta offering of 108 preparations and a re-enactment of Krishna lifting Govardhan Hill — join us for this beloved celebration.",
+    primaryCta: { label: "See Festival Calendar", href: "/get-involved#events" },
+  },
+  {
+    key: "kirtan",
+    image: "/hero/kirtan.jpg",
+    eyebrow: "Chant Together",
+    title: "Kirtan",
+    body: "Congregational chanting of the Hare Krishna maha-mantra — music, dancing, and joy open to everyone, no experience needed.",
+    primaryCta: { label: "See Festival Calendar", href: "/get-involved#events" },
+  },
 ] as const;
+
+// New temple construction status — Sri Sri Radha Damodar Temple.
+// Single source of truth; update here and it reflects everywhere it's shown
+// (currently the New Temple location page).
+export const constructionUpdates = {
+  templeName: "Sri Sri Radha Damodar Temple",
+  milestones: [
+    {
+      title: "Site Plan Approved by City",
+      detail: "Completed by our civil engineering team.",
+      date: "2024",
+      done: true,
+    },
+    {
+      title: "Building Permit Approved by City",
+      date: "February 2026",
+      done: true,
+    },
+    {
+      title: "General Contractor Bidding Process Completed",
+      date: "July 2026",
+      done: true,
+    },
+    {
+      title: "Final Round of Fundraising",
+      detail: "Construction can begin once complete.",
+      date: "In progress",
+      done: false,
+    },
+  ],
+  constructionDuration: "10 to 12 months",
+  features: [
+    "Modern design",
+    "48 car parking spots",
+    "Centrally located — an easy commute from both north and south Austin",
+    "Krishna prasadam distribution to begin shortly after the Grand Opening",
+  ],
+};
 
 // Single source of truth for the New Temple capital campaign progress —
 // change these two numbers and the label/percentage everywhere on the site

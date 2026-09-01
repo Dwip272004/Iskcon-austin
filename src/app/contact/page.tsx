@@ -3,11 +3,12 @@ import { Card, PageHero, SectionHeading } from "@/components/ui";
 import { MapPinIcon } from "@/components/devotional-art";
 import { locations, site } from "@/lib/data";
 import GalleryLink from "@/components/GalleryLink";
+import JoinCourseBanner from "@/components/JoinCourseBanner";
 
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Get in touch with ISKCON Austin — phone, email, and addresses for Sunday programs, weekday programs, and the new temple.",
+    "Get in touch with ISKCON Austin — phone, email, and addresses for Sunday programs and the new temple.",
 };
 
 const details = [
@@ -36,10 +37,10 @@ export default function ContactPage() {
           <SectionHeading
             eyebrow="Where To Find Us"
             title="Our Locations"
-            description="ISKCON Austin currently operates across three locations — please make sure you're headed to the right one."
+            description="Please make sure you're headed to the right one."
           />
-          <div className="mt-10 grid sm:grid-cols-3 gap-6">
-            {locations.map((l) => (
+          <div className="mt-10 grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
+            {locations.filter((l) => l.key !== "daily").map((l) => (
               <Card key={l.key} className="p-6">
                 <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-gold border border-cream-deep">
                   <MapPinIcon className="w-5 h-5" />
@@ -138,6 +139,8 @@ export default function ContactPage() {
       <div className="pb-16">
         <GalleryLink />
       </div>
+
+      <JoinCourseBanner />
     </div>
   );
 }

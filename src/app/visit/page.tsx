@@ -4,6 +4,7 @@ import { ArtPanel, Card, PageHero, SectionHeading } from "@/components/ui";
 import { MapPinIcon, NamasteIcon } from "@/components/devotional-art";
 import { faqs, locations, site, weeklySchedule } from "@/lib/data";
 import GalleryLink from "@/components/GalleryLink";
+import JoinCourseBanner from "@/components/JoinCourseBanner";
 
 export const metadata: Metadata = {
   title: "Visit Us",
@@ -191,6 +192,8 @@ export default function VisitPage() {
       <div className="py-16">
         <GalleryLink />
       </div>
+
+      <JoinCourseBanner />
     </div>
   );
 }

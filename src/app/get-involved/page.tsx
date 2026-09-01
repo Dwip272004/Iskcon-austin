@@ -10,6 +10,7 @@ import {
 import EventsList from "@/components/EventsList";
 import { getInvolvedOptions, ongoingPrograms } from "@/lib/data";
 import GalleryLink from "@/components/GalleryLink";
+import JoinCourseBanner from "@/components/JoinCourseBanner";
 
 const PROGRAM_ICONS = [ScriptureIcon, KirtanIcon, PrasadamIcon];
 
@@ -137,6 +138,8 @@ export default function GetInvolvedPage() {
       <div className="pb-16">
         <GalleryLink />
       </div>
+
+      <JoinCourseBanner />
     </div>
   );
 }
