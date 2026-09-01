@@ -53,6 +53,18 @@ const gallerySections: GallerySection[] = [
       };
     }),
   },
+  {
+    key: "festivals",
+    label: "Festivals & Celebrations",
+    description:
+      "Abhishek ceremonies, Holi, and other devotional celebrations throughout the year.",
+    photos: [
+      { src: "/gallery/festivals-01.jpg", alt: "Community temple activity — evening aarti and darshan" },
+      { src: "/gallery/festivals-02.jpg", alt: "Festival and devotional celebrations — decorated altar offerings" },
+      { src: "/gallery/festivals-03.jpg", alt: "Abhishek devotional ceremony" },
+      { src: "/gallery/festivals-04.jpg", alt: "Holi community celebration" },
+    ],
+  },
 ];
 
 export default function MediaPage() {
@@ -62,7 +74,7 @@ export default function MediaPage() {
         eyebrow="Watch & Listen"
         title="Media"
         description="Can't make it in person? Join us online for live programs, or catch up with our video archive and photo gallery."
-        image="/temple-renderings/interior-01-altar-hall.jpg"
+        image="/media/banner.jpg"
       />
 
       {/* Livestream */}

@@ -36,8 +36,11 @@ export const site = {
   },
 };
 
-// ISKCON Austin operates across three addresses — keep them distinct rather
+// ISKCON Austin operates across two addresses — keep them distinct rather
 // than collapsing to a single "site.address".
+// Note: the "Weekday Daily Program" location has been intentionally removed
+// site-wide per the client's requested updates — do not re-add a "daily"
+// entry here without also re-adding its dedicated page and homepage section.
 export const locations = [
   {
     key: "sunday",
@@ -46,14 +49,6 @@ export const locations = [
     description: "Sunday Feast, kirtan, and the weekly Bhagavad-gita class are held here.",
     directionsUrl:
       "https://www.google.com/maps/dir/?api=1&destination=12012+N+Interstate+35%2C+Austin%2C+TX+78753",
-  },
-  {
-    key: "daily",
-    label: "Weekday Daily Programs",
-    address: "10700 Jonwood Way, Austin, TX 78753", // confirmed via iskconaustin.com/temple-donate/
-    description: "Daily aarti, Srimad Bhagavatam class, and worship take place here Monday through Saturday.",
-    directionsUrl:
-      "https://www.google.com/maps/dir/?api=1&destination=10700+Jonwood+Way%2C+Austin%2C+TX+78753",
   },
   {
     key: "newTemple",
@@ -221,7 +216,7 @@ export const constructionUpdates = {
 // together automatically.
 export const campaignProgress = {
   raised: 1_250_000, // $1.25M — confirmed by Sravanananda
-  goal: 5_000_000, // $5M
+  goal: 4_500_000, // $4.5M — updated per client's requested website changes
 };
 
 export function campaignPercent() {

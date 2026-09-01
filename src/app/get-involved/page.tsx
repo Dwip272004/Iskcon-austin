@@ -73,7 +73,7 @@ export default function GetInvolvedPage() {
             icon={YouthIcon}
             caption="Youth Program"
             tone="cream"
-            photo="/temple-renderings/exterior-03-covered-porch.jpg"
+            photo="/visit/banner.jpg"
           />
         </div>
       </section>

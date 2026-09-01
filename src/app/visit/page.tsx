@@ -19,7 +19,7 @@ export default function VisitPage() {
         eyebrow="New Here?"
         title="Plan Your Visit"
         description="Everyone is welcome at ISKCON Austin — no invitation, dress code, or prior knowledge needed. Here's everything to know before you come."
-        image="/temple-renderings/exterior-03-covered-porch.jpg"
+        image="/visit/banner.jpg"
       />
 
       {/* What to expect */}
@@ -116,7 +116,7 @@ export default function VisitPage() {
           <SectionHeading
             eyebrow="Getting Here"
             title="Directions & Parking"
-            description="ISKCON Austin operates across three locations — find the right one below and tap Get Directions."
+            description="ISKCON Austin operates across two locations — find the right one below and tap Get Directions."
           />
           <div className="mt-8 rounded-2xl bg-white border border-cream-deep p-6 grid sm:grid-cols-2 gap-6 text-sm text-ink-soft leading-relaxed">
             <p>
@@ -131,7 +131,7 @@ export default function VisitPage() {
               details.
             </p>
           </div>
-          <div className="mt-10 grid sm:grid-cols-3 gap-6">
+          <div className="mt-10 grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
             {locations.map((l) => (
               <Card key={l.key} className="p-6">
                 <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-gold border border-cream-deep">

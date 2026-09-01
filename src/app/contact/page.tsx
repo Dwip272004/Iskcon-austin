@@ -15,11 +15,6 @@ const details = [
   { label: "Phone", value: site.phone, href: `tel:${site.phone}` },
   { label: "Email", value: site.email, href: `mailto:${site.email}` },
   { label: "Sunday Hours", value: site.hours },
-  ...site.contactPeople.map((p) => ({
-    label: "Temple Contact",
-    value: `${p.name} — ${p.phone}`,
-    href: `tel:${p.phone}`,
-  })),
 ];
 
 export default function ContactPage() {
@@ -40,7 +35,7 @@ export default function ContactPage() {
             description="Please make sure you're headed to the right one."
           />
           <div className="mt-10 grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
-            {locations.filter((l) => l.key !== "daily").map((l) => (
+            {locations.map((l) => (
               <Card key={l.key} className="p-6">
                 <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-gold border border-cream-deep">
                   <MapPinIcon className="w-5 h-5" />
@@ -86,6 +81,22 @@ export default function ContactPage() {
                 </dd>
               </div>
             ))}
+            <div>
+              <dt className="text-xs font-semibold uppercase tracking-wide text-gold">
+                Temple Contact
+              </dt>
+              <dd className="mt-2 space-y-2">
+                {site.contactPeople.map((p) => (
+                  <a
+                    key={p.name}
+                    href={`tel:${p.phone}`}
+                    className="block text-lg text-navy font-medium hover:text-gold transition-colors"
+                  >
+                    {p.name} — {p.phone}
+                  </a>
+                ))}
+              </dd>
+            </div>
           </dl>
           <div className="mt-10 relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-cream-deep shadow-sm">
             <iframe

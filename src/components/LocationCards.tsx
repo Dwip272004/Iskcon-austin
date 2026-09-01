@@ -12,9 +12,6 @@ function scheduleFor(key: Location["key"]) {
   if (key === "sunday") {
     return weeklySchedule.filter((s) => s.day === "Sunday");
   }
-  if (key === "daily") {
-    return weeklySchedule.filter((s) => s.day === "Every Day" || s.day === "Wednesday");
-  }
   return [];
 }
 
@@ -22,7 +19,7 @@ export default function LocationCards() {
   const [openKey, setOpenKey] = useState<string | null>(null);
 
   return (
-    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
       {locations.map((l) => {
         const isOpen = openKey === l.key;
         const schedule = scheduleFor(l.key);

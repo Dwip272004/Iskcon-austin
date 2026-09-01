@@ -10,12 +10,11 @@ import { CornerFrame, OrnamentDivider } from "@/components/ornaments";
 import HeroCarousel from "@/components/HeroCarousel";
 import LocationCards from "@/components/LocationCards";
 import JoinCourseBanner from "@/components/JoinCourseBanner";
-import { campaignPercent, events, givingFunds, locations, weeklySchedule } from "@/lib/data";
+import { campaignPercent, events, givingFunds, weeklySchedule } from "@/lib/data";
 
 export default function HomePage() {
   const sundayItems = weeklySchedule.filter((s) => s.day === "Sunday");
   const upcoming = events.slice(0, 3);
-  const dailyLocation = locations.find((l) => l.key === "daily")!;
 
   return (
     <div>
@@ -44,27 +43,6 @@ export default function HomePage() {
           ))}
         </div>
 
-        {/* Second row: daily (weekday) programs */}
-        <div className="mt-6">
-          <Card className="p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-wide text-gold">
-                Every Day, Monday–Saturday
-              </p>
-              <h3 className="font-display text-xl font-semibold text-navy mt-2">
-                Daily Programs at Our Weekday Location
-              </h3>
-              <p className="mt-2 text-sm text-ink-soft leading-relaxed">
-                Mangala Aarti, Srimad Bhagavatam class, and evening aarti happen
-                every day at {dailyLocation.address}.
-              </p>
-            </div>
-            <Button href="/visit" variant="secondary" className="shrink-0">
-              View Daily Programs
-            </Button>
-          </Card>
-        </div>
-
         <div className="mt-8 flex flex-wrap gap-4">
           <Button href="/visit" variant="secondary">
             View Full Weekly Schedule
@@ -75,14 +53,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Location guide — 3 current locations, each expandable for details */}
+      {/* Location guide — current locations, each expandable for details */}
       <section className="bg-cream">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-24">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <SectionHeading
               eyebrow="Find Us"
               title="Our Locations"
-              description="ISKCON Austin currently operates across three locations — tap Get Details on any card for its schedule and directions."
+              description="ISKCON Austin currently operates across two locations — tap Get Details on any card for its schedule and directions."
             />
             <Link
               href="/visit"
@@ -102,8 +80,8 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-24 grid lg:grid-cols-2 gap-12 items-center">
           <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-cream-deep shadow-sm">
             <Image
-              src="/temple-renderings/exterior-04-front-entrance-pool.jpg"
-              alt="Architectural rendering of the new ISKCON Austin temple's front entrance and reflecting pool"
+              src="/new-temple/campaign-hero.jpg"
+              alt="Devotees gathered outside the new ISKCON Austin temple's front entrance and reflecting pool"
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"
               className="object-cover"
